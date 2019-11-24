@@ -16,7 +16,7 @@
             <div class="over"><Icon type="ios-mail" class="menuIcon"></Icon>
             <span class="menuWords">Message</span></div>
           </MenuItem>
-          <MenuItem name="personal" router-link="{path: '/Personal'}" style="width:11%" key="Personal">
+          <MenuItem name="personal" router-link="path: '/Zoom', query: { visitor_id: userID }" style="width:11%" key="Zoom">
             <div class="over"><Icon type="ios-person" class="menuIcon"></Icon>
             <span class="menuWords">Personal</span></div>
           </MenuItem>

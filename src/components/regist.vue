@@ -18,11 +18,8 @@
           {{ errHint }}
         </div>
         <div class="RegistInput">
-          <div class="username">
-            <input type="text" v-model="name" placeholder="user name" @keyup.enter="registEventHandler">
-          </div>
           <div class="account">
-            <input type="text" v-model="email" placeholder="email" @keyup.enter="registEventHandler">
+            <input type="text" v-model="email" placeholder="name" @keyup.enter="registEventHandler">
           </div>
           <div class="password">
             <input type="password" v-model="password" placeholder="password" @keyup.enter="registEventHandler">
@@ -63,7 +60,6 @@ export default {
   name: "Register",
   data() {
     return {
-      name: null,
       email: null,
       password: null,
       password2: null,
@@ -79,26 +75,16 @@ created() {
   methods: {
     async registEventHandler() {
       this.loading=true;
-      var regAccount=/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+      var regAccount=/^[a-zA-Z0-9\u4e00-\u9fa5]{1,10}$/
       var regPassword=/^[0-9a-zA-Z_#@!\?\-\\]{6,20}$/
       if(!regAccount.test(this.email))
       {
         this.loading=false;
-        this.errHint = "Your account should be a valid e-mail.";
+        this.errHint = "不对";
         this.$Notice.error({
               title: 'Please input your e-mail again.',
               desc:''
             })
-        return;
-      }
-      else if(!this.name)
-      {
-        this.loading=false;
-        this.errHint = "You should have a nickname.";
-        this.$Notice.error({
-              title: 'Please input your name again.',
-              desc:''
-            }) 
         return;
       }
       else if(!regPassword.test(this.password))
@@ -125,7 +111,6 @@ created() {
       try {
         console.log("start")
         let data = {
-          nickname: this.name,
           email: this.email,
           password: this.password
         }
@@ -144,15 +129,15 @@ created() {
             this.loading=false 
             this.$router.push("/login");
           }
-          else if(Response.data.code==200 && Response.data.message=="The email is used")
+          else if(Response.data.code==200 && Response.data.message=="Your name is used")
           {
             //邮箱已被使用
             this.loading=false
             this.$Notice.error({
-              title: 'This email is used.',
+              title: 'This name is used.',
               desc:''
             })
-            this.errHint="The email is used!"
+            this.errHint="The name is used!"
           }
           else{
             this.loading=false
@@ -256,7 +241,7 @@ created() {
   border-color: rgba(0, 132, 180, 0.5);
 }
 
-.RegistInput .username,
+
 .RegistInput .account,
 .RegistInput .password {
   margin-bottom: 15px;

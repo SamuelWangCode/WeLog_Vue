@@ -19,7 +19,7 @@
         </div>
         <div class="LoginInput" >
           <div class="account">
-            <input size="large" type="text" v-model="email" placeholder="email" @keyup.enter="loginEventHandeler"></input>
+            <input size="large" type="text" v-model="email" placeholder="name" @keyup.enter="loginEventHandeler"></input>
           </div>
           <div class="password">
             <input size="large" type="password" v-model="password" placeholder="password" @keyup.enter="loginEventHandeler"></input>
