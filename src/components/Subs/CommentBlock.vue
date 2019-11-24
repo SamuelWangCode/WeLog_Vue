@@ -111,9 +111,7 @@
 </template>
 
 <script>
-import Divider from "iview/src/components/divider/divider";
 export default {
-  components: {Divider},
   props:{
         ifShowComment:false,
         comments:{

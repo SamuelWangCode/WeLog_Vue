@@ -5,11 +5,11 @@ import App from './App'
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 import VueAxios from 'vue-axios'
-import iView from 'iview'
+import ViewUI from 'view-design'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import 'iview/dist/styles/iview.css'
+import 'view-design/dist/styles/iview.css'
 //写cookies
 Vue.prototype.setCookie = function (name,value)
 {
@@ -477,7 +477,7 @@ Vue.directive('emotion', {
 
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
-Vue.use(iView, {
+Vue.use(ViewUI, {
   transfer: true,
   select: {
       arrowSize: 0
@@ -487,12 +487,12 @@ Vue.use(ElementUI)
 /* eslint-disable no-new */
 
 router.beforeEach((to, from, next) => {
-  iView.LoadingBar.start();
+  ViewUI.LoadingBar.start();
   next();
 });
 
 router.afterEach(route => {
-  iView.LoadingBar.finish();
+  ViewUI.LoadingBar.finish();
 });
 
 new Vue({
