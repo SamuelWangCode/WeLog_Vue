@@ -145,11 +145,6 @@
               v-bind:visitor="Number(item.message_sender_user_id)"
               style="float:right;"
             ></FollowButton>
-            <usermessage
-              style="float:right;margin-right: 10px"
-              v-bind:userId="item.message_sender_user_id"
-              v-if="getCookies('userID') != item.message_sender_user_id"
-            ></usermessage>
           </div>
         </div>
         <div class="twi-text-block">
@@ -269,11 +264,6 @@
               v-bind:visitor="Number(item.message_sender_user_id)"
               style="float:right;"
             ></FollowButton>
-            <usermessage
-              style="float:right;margin-right: 10px"
-              v-bind:userId="item.message_sender_user_id"
-              v-if="item.message_sender_user_id == this.getCookies()"
-            ></usermessage>
           </div>
         </div>
         <div class="twi-text-block">
@@ -349,8 +339,6 @@ import axios from "axios";
 import ShareButton from "./ShareButton";
 import ImageHandler from "./ImageHandler";
 import CommentBlock from "./CommentBlock";
-import UserMessage from "./UserMessage";
-import BlockUser from "./BlockUser";
 import TwiTextBlock from "./TwiTextBlock";
 
 import VueStar from "vue-star";
@@ -586,8 +574,6 @@ export default {
     sharebutton: ShareButton,
     imagehandler: ImageHandler,
     commentblock: CommentBlock,
-    usermessage: UserMessage,
-    blockuser: BlockUser,
     twitextblock: TwiTextBlock,
     VueStar,
     FollowButton: FollowButoon

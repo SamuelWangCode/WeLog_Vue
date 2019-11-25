@@ -7,16 +7,7 @@
             <div class="over"><Icon type="ios-home" class="menuIcon"></Icon>
             <span class="menuWords">Home</span></div>
           </MenuItem>
-          <MenuItem  name="notifications" router-link="{path: '/Notifications'}" style="width:13%" key="Notifications" @click.native="isRead"  >
-            <div class="over"><Icon type="ios-notifications" class="menuIcon" ></Icon>
-            <span class="menuWords">Notifications</span>
-            <Badge v-bind:count="mentionedCount"></Badge></div>
-          </MenuItem>
-          <MenuItem name="message" router-link="{path: '/Message'}" style="width:11%" key="Message">
-            <div class="over"><Icon type="ios-mail" class="menuIcon"></Icon>
-            <span class="menuWords">Message</span></div>
-          </MenuItem>
-          <MenuItem name="personal" router-link="path: '/Zoom', query: { visitor_id: userID }" style="width:11%" key="Zoom">
+          <MenuItem name="personal" router-link :to="{ path: '/Zoom', query: { visitor_id: userID}}" style="width:11%" key="personal">
             <div class="over"><Icon type="ios-person" class="menuIcon"></Icon>
             <span class="menuWords">Personal</span></div>
           </MenuItem>
@@ -44,12 +35,16 @@
         theme1:"light",
         model13: '',
         loading1: false,
-        list: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New hampshire', 'New jersey', 'New mexico', 'New york', 'North carolina', 'North dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode island', 'South carolina', 'South dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West virginia', 'Wisconsin', 'Wyoming']
+        list: [],
+        userID: 0
       }
     }
     ,
     mounted(){
       let _this=this;
+      this.userID = _this.getCookies("userID")
+      console.log("亚视了");
+      console.log(id);
       this.getAt();
         setInterval(function () {
           _this.getAt();
@@ -57,6 +52,9 @@
         },
 
     methods:{
+      getCookies(a){
+        return this.getCookie(a);
+      },
       isRead(){
         this.mentionedCount = 0;
         console.log("读了")

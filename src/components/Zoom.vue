@@ -385,9 +385,6 @@ bottom:0;
       <div id="middle-right-container">
         <div id="middle-right-top-container">
 
-          <UserMessage v-if="visitor!=getCookies('userID')" :userId="visitor" class="message-button-container">
-          </UserMessage>
-
           <div v-if="visitor!=user" class="follow-button-container">
             <FollowButton
               v-bind:followerCount.sync="followerCount"
@@ -412,7 +409,7 @@ import User from "./Subs/User";
 import UserForZoom from "./Subs/UserForZoom";
 import FollowButton from "./Subs/FollowButoon"
 import backToTop from "./Subs/BackToTop"
-import UserMessage from "./Subs/UserMessage"
+
 
 export default {
   name: "Zoom",
@@ -464,7 +461,6 @@ export default {
     User,
     FollowButton,
     backToTop,
-    UserMessage
   },
   created() {
     
