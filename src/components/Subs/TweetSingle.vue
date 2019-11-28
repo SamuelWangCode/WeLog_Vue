@@ -64,17 +64,6 @@
   background-color: white;
   width: 100%;
 }
-.collection-div {
-  float: left;
-  width: 20%;
-  height: 50px;
-  /*margin-bottom: 20px;*/
-  text-align: center;
-  margin-left: 60px;
-}
-.collection-div:hover {
-  cursor: pointer;
-}
 .comment-div {
   float: left;
   height: 50px;
@@ -98,147 +87,14 @@
 .likes-div {
   cursor: pointer;
 }
-.share-div {
-  float: left;
-  width: 20%;
-  height: 50px;
-  text-align: center;
-}
 
-.shared-twi-div {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  /* padding-top:20px; */
-  /* margin-bottom:20px; */
-  background-color: rgb(236, 236, 236);
-}
 </style>
 
 
 
 <template>
   <div>
-    <div v-if="messageIsShared">
-      <div  class="twi-left">
-        <router-link :to="{ path: '/Zoom', query: { visitor_id: item.message_sender_user_id }}">
-          <Avatar style="width:40px;height:40px;border-radius:50%;" v-bind:src="item.userAvt"></Avatar>
-        </router-link>
-      </div>
-
-      <div class="twi-right">
-        <div class="twi-right-top-div">
-          <div id="name-time-die"  style="float:left;">
-            <router-link :to="{ path: '/Zoom', query: { visitor_id: item.message_sender_user_id }}">
-              <p class="user-name">{{item.userName}}</p>
-              <p class="time">
-                {{item.message_create_time}}
-                <Icon type="ios-flame" size="18" style="color: #ff9900"></Icon>
-                {{item.message_heat}}
-              </p>
-            </router-link>
-          </div>
-          <div id="follow-mes-butt-div" style="float: right;">
-            <FollowButton
-              @finish_update="send_update($event)"
-              v-bind:isFollowing.sync="followByUser"
-              v-bind:visitor="Number(item.message_sender_user_id)"
-              style="float:right;"
-            ></FollowButton>
-          </div>
-        </div>
-        <div class="twi-text-block">
-          <twitextblock
-            class="twi-text"
-            v-bind:fullText="item.message_content"
-            :ats="item.message_ats"
-            :topics="item.message_topics"
-          ></twitextblock>
-        </div>
-      </div>
-
-      <div class="shared-twi-div">
-        <div  style="float:left;width:8%;margin-left:6%">
-          <router-link
-            :to="{ path: '/Zoom', query: { visitor_id: item.rawItem.message_sender_user_id }}"
-          >
-            <Avatar style="width:40px;height:40px;border-radius:50%;" v-bind:src="rawItemUserAvt"></Avatar>
-          </router-link>
-        </div>
-
-        <div style="float:left;width:70%;margin-left:2%;margin-right:6%">
-          <div >
-            <router-link
-              :to="{ path: '/Zoom', query: { visitor_id: item.rawItem.message_sender_user_id }}"
-            >
-              <p style="text-size:30px;">{{rawItemUserName}}</p>
-              <p style="text-size:24px;">
-                {{item.rawItem.message_create_time}}
-                <Icon type="ios-flame" size="18" style="color: #ff9900"></Icon>
-                {{item.message_heat}}
-              </p>
-            </router-link>
-          </div>
-          <div class="twi-text-block">
-            <twitextblock
-              class="twi-text"
-              v-bind:fullText="item.rawItem.message_content"
-              :ats="item.rawItem.message_ats"
-              :topics="item.rawItem.message_topics"
-            ></twitextblock>
-          </div>
-
-          <imagehandler
-            class="img-handler"
-            v-bind:imgData="item.rawItem.message_image_urls"
-            :twiId="item.rawItem.message_id"
-          ></imagehandler>
-        </div>
-      </div>
-      <div class="buttom-buttons">
-        <div class="collection-div" @click="doCollect()">
-          <VueStar animate="animated rubberBand" color="#19be6b">
-            <a slot="icon">
-              <Icon type="ios-star" size="24" v-if="collectByUser" style="color: gold"></Icon>
-              <Icon type="ios-star-outline" size="24" v-else style="margin-bottom: 3px"></Icon>
-            </a>
-          </VueStar>
-        </div>
-        <div class="comment-div" @click="showComment()">
-          <VueStar animate="animated rubberBand" color="#F05654">
-            <a slot="icon">
-              <Icon v-if="commented" type="ios-chatboxes" size="24"></Icon>
-              <Icon v-else type="ios-chatboxes-outline" size="24"></Icon>
-              <span>{{commentsNum}}</span>
-            </a>
-          </VueStar>
-        </div>
-        <div class="share-div">
-          <VueStar animate="animated rubberBand" color="#F05654">
-            <a slot="icon">
-              <sharebutton class="share-button" v-bind:item="item" :twiId="item.message_id"></sharebutton>
-            </a>
-          </VueStar>
-        </div>
-        <div class="likes-div" @click="doLike()">
-          <VueStar animate="animated rubberBand" color="#F05654">
-            <a slot="icon">
-              <Icon type="ios-heart" size="24" v-if="likeByUser" style="color: #ed4014"></Icon>
-              <Icon type="ios-heart-outline" size="24" v-else></Icon>
-              <span>{{item.message_like_num}}</span>
-            </a>
-          </VueStar>
-        </div>
-      </div>
-      <commentblock
-        class="comment-block"
-        @sendComm="doSendComment"
-        v-bind:ifShowComment="ifShowComment"
-        :comments="comments"
-      ></commentblock>
-    </div>
-
-    <div v-else>
+    <div>
       <div class="twi-left">
         <router-link :to="{ path: '/Zoom', query: { visitor_id: item.message_sender_user_id }}">
           <Avatar size="large" v-bind:src="userAvt"></Avatar>
@@ -282,34 +138,12 @@
         ></imagehandler>
       </div>
       <div class="buttom-buttons">
-        <div class="collection-div" @click="doCollect()">
-          <VueStar animate="animated rubberBand" color="#F05654">
-            <a slot="icon">
-              <Icon
-                type="ios-star"
-                size="24"
-                v-if="collectByUser"
-                style="margin-bottom: 3px;color: gold"
-              ></Icon>
-              <Icon type="ios-star-outline" size="24" v-else style="margin-bottom: 3px"></Icon>
-            </a>
-          </VueStar>
-        </div>
-
         <div class="comment-div" @click="showComment()">
           <VueStar animate="animated rubberBand" color="#F05654">
             <a slot="icon">
               <Icon v-if="commented" type="ios-chatboxes" size="24"></Icon>
               <Icon v-else type="ios-chatboxes-outline" size="24"></Icon>
               <span>{{commentsNum}}</span>
-            </a>
-          </VueStar>
-        </div>
-
-        <div class="share-div">
-          <VueStar animate="animated rubberBand" color="#F05654">
-            <a slot="icon">
-              <sharebutton class="share-button" v-bind:item="item" :twiId="item.message_id"></sharebutton>
             </a>
           </VueStar>
         </div>
@@ -336,7 +170,6 @@
 
 <script>
 import axios from "axios";
-import ShareButton from "./ShareButton";
 import ImageHandler from "./ImageHandler";
 import CommentBlock from "./CommentBlock";
 import TwiTextBlock from "./TwiTextBlock";
@@ -359,7 +192,6 @@ export default {
       followByUser: null,
       commentsNum: 0,
       commented: false,
-      messageIsShared: false,
       userAvt:"",
       userName:"user",
       rawItemUserAvt: "",
@@ -419,35 +251,6 @@ export default {
         });
       }
       this.$emit("likeTwi");
-    },
-    doCollect() {
-      if (this.collectByUser == false) {
-        this.collectByUser = true;
-        this.addCollection(this.item.message_id).then(Response => {
-          if (Response.data.message == "success") {
-            //console.log("收藏");
-            this.$emit("collectTwi");
-          }
-          //失败了就返回来
-          else {
-            this.collectByUser = false;
-            alert("收藏失败");
-          }
-        });
-      } else if (this.collectByUser == true) {
-        this.collectByUser = false;
-        this.deleteCollection(this.item.message_id).then(Response => {
-          if (Response.data.message == "success") {
-            //console.log("取消收藏");
-            this.$emit("collectTwi");
-          }
-          //失败了就返回来
-          else {
-            this.collectByUser = true;
-            alert("失败");
-          }
-        });
-      }
     },
     getComment() {
       let data = {
@@ -540,7 +343,6 @@ export default {
         Response => {
           if (Response.data.message == "success") {
             this.item.rawItem = Response.data.data;
-            this.messageIsShared = true;
             this.getUserPublicInfo(
               this.item.rawItem.message_sender_user_id
             ).then(Response => {
@@ -571,7 +373,6 @@ export default {
   },
   beforeMount() {},
   components: {
-    sharebutton: ShareButton,
     imagehandler: ImageHandler,
     commentblock: CommentBlock,
     twitextblock: TwiTextBlock,
