@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import router from 'vue-router'
 import Home from '@/components/Home'
-import index from '@/components/index'
+import Start from '@/components/Start'
 import login from '@/components/login'
 import register from '@/components/regist'
 import zoom from '@/components/Zoom'
@@ -23,8 +23,8 @@ export default new router({
     },
     {
       path: '/index', alias:'/',
-      name: 'index',
-      component: index,
+      name: 'Start',
+      component: Start,
       meta: {
         keepAlive: false
       }
