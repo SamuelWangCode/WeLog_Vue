@@ -19,9 +19,6 @@
           :mask-closable="false"
           :styles="styles"
         >
-          <div class="ErrHint alert alert-danger" v-if="errHint">
-            {{ errHint }}
-          </div>
           <div class="login-input">
             <div class="label">
               USERNAME
