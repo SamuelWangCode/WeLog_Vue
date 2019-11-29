@@ -2,7 +2,7 @@
   <div id="app" >
     <section v-if="$route.meta.keepAlive">
       <nav class="navBar" style="z-index: 1">
-        <Menu mode="horizontal" :theme="theme1" active-name="home" style="padding-left:10%;" @on-select="onSelect">
+        <Menu mode="horizontal" :theme="theme1" active-name="home" style="padding-left:10%;padding-right: 40px;" @on-select="onSelect">
           <MenuItem name="home" router-link="{path: '/'}" style="width:9%" key="Home">
             <div class="over"><Icon type="ios-home" class="menuIcon"></Icon>
             <span class="menuWords">Home</span></div>
@@ -15,8 +15,9 @@
             <div class="over"><Icon type="ios-eye" class="menuIcon"></Icon>
             <span class="menuWords">Explore</span></div>
           </MenuItem>
-          <Input v-model = "model13" @keyup.enter.native="handleSearch" placeholder="search in twitter" style="width: 25%;"></Input><Button shape="circle" @click="handleSearch" icon="ios-search" size="small" style="border:0;"></Button>
-          <Button shape="circle" type="error" style="margin-left:20px;" @click = "signOut">Log out</Button>
+          <Button shape="circle" @click="handleSearch" icon="ios-search" style="border:0;"></Button>
+          <Input v-model = "model13" @keyup.enter.native="handleSearch" placeholder="search in twitter" style="width: 25%;"></Input>
+          <Button type="primary" style="float:right;margin-top:15px;" @click = "signOut">Log out</Button>
         </Menu>
       </nav>
     </section>
@@ -43,7 +44,6 @@
     mounted(){
       let _this=this;
       this.userID = _this.getCookies("userID")
-      console.log("亚视了");
       console.log(id);
       this.getAt();
         setInterval(function () {
@@ -125,15 +125,32 @@
   }
 </script>
 
-<style scoped>
+<style>
   .navBar{
-    background-color: white;
-    box-shadow:1px 1px 1px #333;
-    height: 46px;
+    height: 60px;
     position: fixed;
     top:0;
     left:0;
     width: 100%;
+    border-bottom: 1px solid #e6ecf0;
+  }
+  .ivu-input:hover{
+    border-color: #4000FF;
+  }
+  .ivu-btn{
+    font-weight: 500;
+    border-radius: 0;
+  }
+  .ivu-btn-primary{
+    color:#FDFDFE;
+    background-color: #FD146C;
+  }
+  .ivu-btn-primary:hover{
+    background-color: #0C0C0C;
+  }
+  .ivu-btn, .ivu-btn:active, .ivu-btn:focus {
+    border:none;
+    box-shadow: none;
   }
   .menuIcon{
     font-size: 20px;
@@ -143,7 +160,7 @@
   }
   .menuWords{
     float: left;
-    font-size: 14px;
+    font-size: 15px;
     margin-left: 5%;
     display: inline;
   }

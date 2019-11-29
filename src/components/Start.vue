@@ -219,10 +219,11 @@
   }
   .fs-split .split-image{
     width:50%;
-    padding-top: 250px;
+    padding-top: 15%;
     text-align: center;
   }
   .fs-split .split-image img{
+    width: 93%;
     transition: transform .3s linear;
   }
   .fs-split .split-image img:hover{
@@ -240,7 +241,7 @@
   }
   .split-intro{
     font-weight:bold;
-    font-size: 50px;
+    font-size: 38px;
     line-height: 50px;
     letter-spacing: 1px;
     margin-bottom: 30px;
@@ -287,6 +288,9 @@
   .ivu-drawer-header{
     background-color: #0C0C0C;
   }
+  .ivu-drawer-header{
+    padding: 8px 16px;
+  }
   .ivu-drawer-header-inner{
     color:#fff;
     height:30px;
@@ -296,29 +300,34 @@
     letter-spacing: 1px;
   }
   .ivu-drawer-close{
-    top:5px;
+    top:0px;
+  }
+  .ivu-drawer-content{
+    width: 80%;
+    right:0;
   }
   .ivu-drawer-close .ivu-icon-ios-close{
     color:#FD146C;
-    font-size: 50px;
+    font-size: 45px;
     font-weight: 600;
   }
   .login-input input {
-    width:30vw;
+    width:25vw;
     padding: 4px;
     border-top:none;
     border-right: none;
     border-left:none;
     border-bottom: 3px solid #e6ecf0;
-    font-size: 20px;
-    line-height: 3;
+    font-size: 18px;
+    line-height: 1.5;
     margin-bottom: 20px;
   }
   .login-input .label{
-    font-size: 25px;
+    font-size: 23px;
     font-weight:500;
     letter-spacing: 1px;
     color:#0C0C0C;
+    margin-bottom: 10px;
   }
   .login-input input:focus {
     color: #0C0C0C;
@@ -332,7 +341,7 @@
     bottom: 0;
     left: 0;
     border-top: 2px solid #e6ecf0;
-    padding: 13px 20px;
+    padding: 8px 0px;
     text-align: right;
     background: #fff;
   }

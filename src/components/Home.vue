@@ -1,14 +1,14 @@
-<style scoped>
+<style>
 
 
 .center-fix{
 	position: fixed;/*固定位置*/
-	z-index:99;/*设置优先级显示，保证不会被覆盖*/	
+	z-index:99;/*设置优先级显示，保证不会被覆盖*/
   margin:auto;
-left:0;
-right:0;
-top:0;
-bottom:0;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
 }
 .PostSenderContainer {
   width:100%;
@@ -41,7 +41,9 @@ bottom:0;
   letter-spacing: 0.03em;
   cursor: text;
 }
-
+.ivu-menu-horizontal {
+  width:1280px;
+}
 .Editer:focus {
   outline: none;
   height: 100px;
@@ -80,7 +82,6 @@ ul li{
     position: fixed;
     height: 100%;
     width: 100%;
-    background-color: rgb(230, 236, 240);
     overflow: auto;
   }
   #middle-container{
@@ -140,25 +141,25 @@ ul li{
 
 <template >
   <div id='root-div'><div id="topAnchor"></div>
- 
+
   <loadingAnimate v-show="loading" class="center-fix"></loadingAnimate>
-        
+
 
     <Trends></Trends>
 
     <div id="middle-container">
      <ElContainer  id="middle-container1" >
-        
+
 
         <div class="PostSenderContainer">
          <Avatar :src=address shape="circle" on-error="" size="large" style="width:50px;height:50px;border-radius:50%;"/>
-          
+
           <div class="EditerContainer" style="margin-left:-5px;">
             <!--
               <div class="Editer" default-txt="What happens?" contenteditable @click.prevent="clickEditor" v-bind:focus="isEditerFocused" @input="editerInputEventHandler">
                 What happens?
               </div>-->
-            <Input :ref="'editor'" :rows="editor_content.length > 0 ? 4 : 2" v-model="editor_content" v-bind:maxlength="140" type="textarea" placeholder="Enter something..." 
+            <Input :ref="'editor'" :rows="editor_content.length > 0 ? 4 : 2" v-model="editor_content" v-bind:maxlength="140" type="textarea" placeholder="Enter something..."
             @v-bind:focus="isEditerFocused" @focus="editerFocusEventHandler"  @blur="editerBlurEventHandler" />
             <!-----TODO:AddPicture--- ----------------------------------------------->
             <div style="margin-top:5px;">
@@ -177,7 +178,7 @@ ul li{
                     </div>
                 </template>
               </div>
-              <Upload 
+              <Upload
                 ref="upload"
                 :show-upload-list="false"
                 :on-success="handleSuccess"
@@ -201,7 +202,7 @@ ul li{
                 </video>
               </Modal>
             </div>
-    
+
             <!-- sdadasdasdasdsad ---------------------------------------------------------------------------->
             <Button type="primary" size="large" shape="circle" :disabled="!editor_content.length" v-show="editor_content.length > 0" @click="sendPostBtnClickEventHandler" @focus="editerFocusEventHandler" @blur="editerBlurEventHandler" style="float:right;margin-top:10px;margin-right:20px;">Tweet</button>
           </div>
@@ -210,7 +211,7 @@ ul li{
 
 
      </ElContainer>
-     
+
      <ElContainer  id="middle-container2" >
        <!--
        <div style="padding-top:10%;
@@ -242,7 +243,7 @@ ul li{
   import backToTop from "./Subs/BackToTop"
   export default {
     name:'Home',
-    
+
     data(){
       return{
         is_previewing_img: false,
@@ -291,7 +292,7 @@ ul li{
       else{
         console.log("fail")
         this.userName="userName"
-      }  
+      }
     })
     },
     methods:{
@@ -301,7 +302,7 @@ ul li{
       },
       flashCom()
       {
-        this.$router.go(0);  
+        this.$router.go(0);
       },
       uploadTapped(){
         console.log("调用uploadTapped");
@@ -317,7 +318,7 @@ ul li{
             this.video_preview_src = item.url;
             this.is_previewing_video = true;
             this.is_previewing_img = false;
-          }   
+          }
           this.visible = true;
       },
       handleRemove (file) {
@@ -382,7 +383,7 @@ ul li{
                     });
                     return;
                   }
-                    
+
                 }
 
                 const check =  this.$refs.upload.fileList.length < 4;
@@ -412,7 +413,7 @@ ul li{
                       file.url = url;
                       _this.$refs.upload.fileList.push(file);
                   }
-                  
+
                 }
                 console.log("handleBeforeUpload");
                 return false;
@@ -465,7 +466,7 @@ ul li{
         this.sendingTwitter = false;
         this.$router.go(0)
       })
-      
+
     },
 
     captureImage() {

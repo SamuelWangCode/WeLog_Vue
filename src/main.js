@@ -5,11 +5,15 @@ import App from './App'
 import axios from 'axios'
 axios.defaults.withCredentials = true;
 import VueAxios from 'vue-axios'
-import ViewUI from 'view-design'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'view-design/dist/styles/iview.css'
+import ViewUI from 'view-design';
+
+// import '../my-theme/index.less';
+// Vue.use(ViewUI);
+
 //写cookies
 Vue.prototype.setCookie = function (name,value)
 {
