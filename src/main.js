@@ -21,6 +21,7 @@ document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
 //读取cookies
 Vue.prototype.getCookie = function (name)
 {
+  console.log("get Cookie")
 var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
 if(arr=document.cookie.match(reg)) return unescape(arr[2]);
 else return null;

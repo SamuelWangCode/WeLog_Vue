@@ -23,11 +23,11 @@
             <div class="label">
               USERNAME
             </div>
-            <input type="text" placeholder="username" v-model="usernameL" @keyup.enter="loginEventHandeler"></input>
+            <input type="text" placeholder="username" v-model="usernameL" @keyup.enter="loginEventHandeler" maxlength="10"></input>
             <div class="label">
               PASSWORD
             </div>
-            <input type="password" placeholder="password" v-model="passwordL" @keyup.enter="loginEventHandeler"></input>
+            <input type="password" placeholder="password" v-model="passwordL" @keyup.enter="loginEventHandeler" maxlength="20"></input>
           </div>
           <div class="drawer-footer">
             <Button size="large" style="margin-right: 8px" @click="login = false" type="text">Cancel</Button>
@@ -42,22 +42,19 @@
           :mask-closable="false"
           :styles="styles"
         >
-          <div class="ErrHint alert alert-danger" v-if="errHint">
-            {{ errHint }}
-          </div>
           <div class="login-input">
             <div class="label">
               USERNAME
             </div>
-            <input type="text" placeholder="username" v-model="usernameR" @keyup.enter="registEventHandler"></input>
+            <input type="text" placeholder="username" v-model="usernameR" @keyup.enter="registEventHandler" maxlength="10"></input>
             <div class="label">
               PASSWORD
             </div>
-            <input type="password" placeholder="password" v-model="passwordR" @keyup.enter="registEventHandler"></input>
+            <input type="password" placeholder="password" v-model="passwordR" @keyup.enter="registEventHandler" maxlength="20"></input>
             <div class="label">
               PASSWORD-CONFIRM
             </div>
-            <input type="password" placeholder="password" v-model="confirmPassword" @keyup.enter="registEventHandler"></input>
+            <input type="password" placeholder="password" v-model="confirmPassword" @keyup.enter="registEventHandler" maxlength="20"></input>
           </div>
           <div class="drawer-footer">
             <Button size="large" style="margin-right: 10px" @click="register = false" type="text">Cancel</Button>
@@ -80,7 +77,6 @@
           login: false,
           register:false,
           loading:false,
-          errHint:'',
           usernameL:null,
           passwordL:null,
           usernameR:null,
@@ -105,8 +101,10 @@
           try {
             console.log("start")
             let data = {
-              usernameL: this.usernameL,
-              passwordL: this.passwordL
+              // usernameL: this.usernameL,
+              // passwordL: this.passwordL
+              email: this.usernameL,
+              password: this.passwordL
             }
             this.signIn(data).then(Response=>{
               console.log(Response);
@@ -125,14 +123,13 @@
                 console.log(document.cookie)
                 this.$router.push("/home");
               }
-              else if(Response.data.code==200 && Response.data.message=="Username or Password Wrong")
+              else if(Response.data.code==200 && Response.data.message=="E-mail or Password Wrong")
               {
                 this.loading=false
                 this.$Notice.error({
                   title: 'Username or Password Wrong.',
                   desc:''
                 })
-                this.errHint="Username or Password is Wrong!"
               }
               else{
                 this.loading=false
@@ -140,7 +137,6 @@
                   title: "You have already loged in.",
                   desc:''
                 })
-                this.errHint="You have already loged in."
               }
             });
           } catch (e) {
@@ -158,31 +154,19 @@
           if(!regUsername.test(this.usernameR))
           {
             this.loading=false;
-            this.errHint = "不对";
-            this.$Notice.error({
-              title: 'Please input your username again.',
-              desc:''
-            })
+            this.$Message.error("Username is invalid.")
             return;
           }
           else if(!regPassword.test(this.passwordR))
           {
             this.loading=false;
-            this.errHint = "Your password should be more than 6 characters, and don't use special character.";
-            this.$Notice.error({
-              title: 'Please input your password again.',
-              desc:''
-            })
+            this.$Message.error("Your password should be more than 6 characters, and don't use special character.");
             return;
           }
           else if(this.passwordR!==this.confirmPassword)
           {
             this.loading=false;
-            this.errHint = "The two passwords did not match!";
-            this.$Notice.error({
-              title: 'Please input your password again.',
-              desc:''
-            })
+            this.$Message.error("The two passwords did not match!");
             return;
           }
           try {
@@ -208,19 +192,11 @@
               else if(Response.data.code==200 && Response.data.message=="Your name is used")
               {
                 this.loading=false
-                this.$Notice.error({
-                  title: 'This name is used.',
-                  desc:''
-                })
-                this.errHint="The name is used!"
+                this.$Message.error("The name is used!")
               }
               else{
                 this.loading=false
-                this.$Notice.error({
-                  title: "Can't connect with server.",
-                  desc:''
-                })
-                this.errHint="Can't connect with server."
+                this.$Message.error("Can't connect with server.")
               }
             });
           } catch (e) {
