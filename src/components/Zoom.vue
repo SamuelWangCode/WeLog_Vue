@@ -321,17 +321,6 @@ bottom:0;
               <div class="Count">{{followerCount}}</div>
             </div>
           </Button>
-          <Button
-            v-bind:class="!navStatus.collectionsShow ? 'TabItem-four' : 'TabItem-four-Show'"
-            v-show="visitor==user"
-            exact-active-class="active"
-            @click="collectionsClicked"
-          >
-            <div class="TabTxt">
-              <div class="TabTitle">Collections</div>
-              <div class="Count">{{collectCount}}</div>
-            </div>
-          </Button>
         </div>
 <hr />
         <div id="display-container">
@@ -368,17 +357,6 @@ bottom:0;
                 @change_my_follow="change_my_follow(arguments)"
               ></userForZoom>
             </div>
-          </div>
-
-          <!--display collections-->
-          <div v-show="navStatus.collectionsShow" id="collections">
-            <tweets
-              @stop_loading="stop_loading"
-              :ref="'twe2'"
-              v-on:change_following="change_follow(arguments)"
-              type="collection"
-              v-bind:info="user"
-            ></tweets>
           </div>
         </div>
       </div>
@@ -428,7 +406,6 @@ export default {
       postsCount: 0,
       followerCount: 0,
       followingCount: 0,
-      collectCount: 0,
       isFollowing: null,
       personAccount: null,
       joinTime: null,
@@ -438,13 +415,11 @@ export default {
         "tweetsShow",
         "followingShow",
         "followersShow",
-        "collectionsShow"
       ],
       navStatus: {
         tweetsShow: true,
         followingShow: false,
         followersShow: false,
-        collectionsShow: false
       },
       selfIntroduction: "The man is lazy,leaving nothing.",
       toFollowList: [],
@@ -477,7 +452,6 @@ export default {
         _this.postsCount = response.data.data.messages_num;
         _this.followerCount = response.data.data.followers_num;
         _this.followingCount = response.data.data.follows_num;
-        _this.collectCount = response.data.data.collection_num;
         _this.selfIntroduction = response.data.data.self_introction;
         _this.joinTime = response.data.data.register_time;
       });
@@ -511,7 +485,6 @@ export default {
   methods: {
     setFalseStatus() {
       this.navStatus.followersShow = false;
-      this.navStatus.collectionsShow = false;
       this.navStatus.followingShow = false;
       this.navStatus.tweetsShow = false;
     },
@@ -543,14 +516,6 @@ export default {
       this.showName = "followersShow";
       this.navStatus[this.showName] = true;
       console.log(this.navStatus.followersShow);
-    },
-
-    collectionsClicked() {
-      console.log("collectionsClicked");
-      this.setFalseStatus();
-      this.showName = "collectionsShow";
-      this.navStatus[this.showName] = true;
-      console.log(this.navStatus.collectionsShow);
     },
     change_follow(event) {
       console.log("change_follow", event[1]);
