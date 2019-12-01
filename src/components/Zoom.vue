@@ -6,7 +6,7 @@
   overflow: scroll;
   background-color: rgb(230, 236, 240);
 }
-#background-top-container {
+/* #background-top-container {
   height: 320px;
   width: 100%;
   background-color: deepskyblue;
@@ -28,16 +28,6 @@
   margin-left: 122px;
 }
 
-.ProfileImg {
-  position: absolute;
-  bottom: -70px;
-  background: #fff;
-  border: 5px solid #fff;
-  border-radius: 50%;
-  transition: 300ms;
-  transform: translateY(0);
-  overflow: hidden;
-}
 .ProfileImgContainer .ProfileImgLink {
   width: 200px;
   height: 200px;
@@ -122,7 +112,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-} */
+} 
 .TabContainer {
   margin-top: 0px;
   margin-right: 0px;
@@ -236,17 +226,7 @@
   margin-left: 20px;
   float:left;
 }
-.center-fix{
-	position: fixed;/*固定位置*/
-	z-index:99;/*设置优先级显示，保证不会被覆盖*/
-  margin:auto;
-left:0;
-right:0;
-top:0;
-bottom:0;
-}
-</style>
-<style>
+
 .el-tabs__item {
   white-space: pre-line !important;
   font-weight: bold !important;
@@ -256,13 +236,43 @@ bottom:0;
 }
 .followers-container{
 
+} */
+.center-fix{
+	position: fixed;
+	z-index:99;
+  margin:auto;
+left:0;
+right:0;
+top:0;
+bottom:0;
 }
+
+.ProfileImg {
+  margin-top: 5%;
+  margin-left: 40%;
+}
+
+.avartarRight{
+  height: 200px;
+  float: left;
+}
+
+.name{
+  font-size: 40px;
+  margin-left: 30%;
+}
+
+.numbers{
+  margin-left: 30%;
+  margin-top: 5%;
+}
+
 </style>
 <template>
   <div id="root-div">
     <div id="topAnchor"></div>
     <loadingAnimate v-if="loading" class="center-fix" />
-    <div class="WallImgContainer">
+    <!-- <div class="WallImgContainer">
       <div class="BkgImgContainer">
         <img :src="personBkgImg" style="height: 320px;width: 100%" />
       </div>
@@ -272,10 +282,10 @@ bottom:0;
             <Avatar style="width:200px;height:200px;border-radius:50%;" :src="avatar"></Avatar>
           </a>
         </div>
-      </div>
-    </div>
+      </div> -->
+    <!-- </div> -->
 
-    <div id="middle-container">
+    <!-- <div id="middle-container">
       <div id="middle-left-container">
         <div id="decoration" style="height: 80px;background-color: white;"></div>
           <div id="selfIntroduction-container">
@@ -288,9 +298,9 @@ bottom:0;
             </div>
             <div id="introduction">{{selfIntroduction}}</div>
           </div>
-      </div>
+      </div> -->
 
-      <div id="middle-middle-container">
+      <!-- <div id="middle-middle-container">
         <div class="TabContainer">
           <Button
             v-bind:class="getRightClass('tweetsShow')"
@@ -323,11 +333,11 @@ bottom:0;
           </Button>
         </div>
 <hr />
-        <div id="display-container">
+        <div id="display-container">-->
           
 
           <!--display tweets-->
-          <div v-if="navStatus.tweetsShow" id="tweets-container">
+          <!-- <div v-if="navStatus.tweetsShow" id="tweets-container">
             <tweets
               @stop_loading="stop_loading"
               :ref="'twe1'"
@@ -335,10 +345,10 @@ bottom:0;
               type="userhome"
               v-bind:info="visitor"
             ></tweets>
-          </div>
+          </div> -->
 
           <!--display following-->
-          <div v-show="navStatus.followingShow" id="following-container">
+          <!-- <div v-show="navStatus.followingShow" id="following-container">
             <div v-for="user in followingList" v-bind:key="user.user_id">
               <userForZoom
                 v-bind:p_user_id="user.user_id"
@@ -346,10 +356,10 @@ bottom:0;
                 @change_my_follow="change_my_follow(arguments)"
               ></userForZoom>
             </div>
-          </div>
+          </div> -->
 
           <!--display followers-->
-          <div v-show="navStatus.followersShow" id="followers-container">
+          <!-- <div v-show="navStatus.followersShow" id="followers-container">
             <div v-for="user in followersList" v-bind:key="user.user_id">
               <userForZoom
                 v-bind:p_user_id="user.user_id"
@@ -373,7 +383,55 @@ bottom:0;
           </div>
         </div>
       </div>
+    </div> -->
+    <div class="ProfileImg">
+        <Avatar style="width:200px;height:200px;border-radius:50%;float:left;" :src="avatar"></Avatar>
+        <FollowButton
+              v-bind:followerCount.sync="followerCount"
+              v-bind:isFollowing.sync="isFollowing"
+              @finish_update="follow_visitor($event)"
+              v-bind:visitor="Number(visitor)"
+            ></FollowButton>
+        <div class="avatarRight">
+          <div class="name">
+            {{nickname}}
+          </div>
+          <div class="numbers">
+            <Button type="text" style="font-size:20px;">Welog<br>{{postsCount}}</Button>
+            <Button type="text" style="font-size:20px;">Following<br>{{followingCount}}</Button>
+            <Button type="text" style="font-size:20px;">Followers<br>{{followerCount}}</Button>
+          </div>
+        </div>
     </div>
+    <Tabs type="line" style="margin-top:5%;margin-left:auto;margin-right:auto;width:50%;background-color:white;">
+        <TabPane label="Welog">
+          <tweets
+              @stop_loading="stop_loading"
+              :ref="'twe1'"
+              v-on:change_following="change_follow(arguments)"
+              type="userhome"
+              v-bind:info="visitor"
+            ></tweets>
+        </TabPane>
+        <TabPane label="Following">
+          <div v-for="user in followingList" v-bind:key="user.user_id">
+              <userForZoom
+                v-bind:p_user_id="user.user_id"
+                :ref="'following'+user.user_id"
+                @change_my_follow="change_my_follow(arguments)"
+              ></userForZoom>
+            </div>
+        </TabPane>
+        <TabPane label="Followers">
+          <div v-for="user in followersList" v-bind:key="user.user_id">
+              <userForZoom
+                v-bind:p_user_id="user.user_id"
+                :ref="'follower'+user.user_id"
+                @change_my_follow="change_my_follow(arguments)"
+              ></userForZoom>
+          </div>
+        </TabPane>
+    </Tabs>
     <backToTop></backToTop>
   </div>
 </template>
