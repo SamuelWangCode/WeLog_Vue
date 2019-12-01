@@ -4,7 +4,7 @@
   height: 100%;
   width: 100%;
   overflow: scroll;
-  background-color: rgb(230, 236, 240);
+  background-color: #F5F5F5;
 }
 /* #background-top-container {
   height: 320px;
@@ -100,7 +100,7 @@
 #middle-right-top-container {
   height: 81px;
   background-color: white;
-  
+
 }
 
 /* #follow-button-container {
@@ -138,7 +138,7 @@
   height: 100%;
   position: relative;
   width: 25%;
-  border-radius:0;  
+  border-radius:0;
   border-bottom:1px solid blue;
 }
 .TabItem-three {
@@ -158,7 +158,7 @@
   height: 100%;
   position: relative;
   width: 33%;
-  border-radius:0;  
+  border-radius:0;
   border-bottom:1px solid blue;
 }
 
@@ -496,7 +496,7 @@ export default {
     backToTop,
   },
   created() {
-    
+
     this.visitor = Number(this.$route.query.visitor_id);
     this.user = this.getCookies("userID");
     console.log("user", this.user);
@@ -601,7 +601,7 @@ export default {
           break;
         }
       }
-      
+
       if (this.$refs.twe1) {
         this.$refs.twe1.change_follow2(event[0], event[1]);
       }
@@ -667,7 +667,7 @@ export default {
       if (this.$refs.twe2) {
         this.$refs.twe2.change_follow2(val, this.visitor);
       }*/
-      
+
     }
   },
   // beforeRouteEnter(to,from,next){

@@ -7,7 +7,7 @@
 .load-more {
   /* font-size: 30px;*/
   font-weight: bold;
-  color: #1da1f2;
+  color:#0C0C0C;
   text-align: center;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -134,7 +134,7 @@ export default {
           this.items.length + 1,
           10
         ).then(Response => {
-          
+
           this.$emit("stop_loading");
           console.log("結束獲取")
           this.twiDatas = Response.data.data;
@@ -177,7 +177,7 @@ export default {
           this.generateData();
           this.spinShow = false;
         });
-      } 
+      }
     },
     //返回排序规则函数的函数
     rule(key) {
@@ -226,7 +226,7 @@ export default {
         //可以先解析已有内容
         this.isFollowing[itemTemp.message_sender_user_id] = null;
             this.items.push(itemTemp);
-        
+
       }
       //完成加入后清空twiDatas，必须有，否则验证出错
       this.twiDatas = [];
@@ -245,7 +245,7 @@ export default {
           k[id] = val;
           this.isFollowing = k;
           console.log(k)
-        
+
       }
     }
   },

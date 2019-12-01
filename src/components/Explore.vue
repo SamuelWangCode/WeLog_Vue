@@ -57,7 +57,7 @@ export default {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color: rgb(230, 236, 240);
+  background-color:#F5F5F5;
   overflow: auto;
 }
 #middle-container{
@@ -69,7 +69,7 @@ export default {
   }
   .center-fix{
 	position: fixed;/*固定位置*/
-	z-index:99;/*设置优先级显示，保证不会被覆盖*/	
+	z-index:99;/*设置优先级显示，保证不会被覆盖*/
   margin:auto;
 left:0;
 right:0;

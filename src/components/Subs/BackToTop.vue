@@ -14,9 +14,9 @@ export default {
 <style>
 .backTop {
   position: fixed;
-  right: 70px;
+  right: 20px;
   bottom: 80px;
-  font-size: 64px;
+  font-size: 50px;
   opacity: 0.6;
   /* font-weight: bold; */
 }
