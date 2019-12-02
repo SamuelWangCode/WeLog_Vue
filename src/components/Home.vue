@@ -42,7 +42,7 @@
   cursor: text;
 }
 .ivu-menu-horizontal {
-  width:1280px;
+  width:100%;
 }
 .Editer:focus {
   outline: none;

@@ -8,11 +8,10 @@ import VueAxios from 'vue-axios'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import 'view-design/dist/styles/iview.css'
+import 'view-design/dist/styles/iview.css';
+import '../my-theme/dist/iview.css'
 import ViewUI from 'view-design';
 
-// import '../my-theme/index.less';
-// Vue.use(ViewUI);
 
 //写cookies
 Vue.prototype.setCookie = function (name,value)
