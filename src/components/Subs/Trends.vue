@@ -1,6 +1,6 @@
 <template>
   <div id="left-container">
-    <ElContainer id="left-container1" style="background-color:#1DA1F2;">
+    <ElContainer id="left-container1" style="background-color:#f6f6f6;">
       <router-link :to="{ path: '/Zoom', query: { visitor_id: userID}}">
       <div style="float:left;margin-left:20px; margin-top:50px;">
       <Avatar
@@ -12,7 +12,7 @@
       />
       </div>
       <div style="float:left; margin-top:70px;margin-left:10px;">
-      <span style="font-weight:bold;font-size:20px;color:white">{{userName}}</span>
+      <span style="font-weight:bold;font-size:20px;color:#0C0C0C">{{userName}}</span>
       </div>
       </router-link>
       <br />
@@ -50,10 +50,10 @@
   top: 70px;
 }
 #left-container1 {
-  background-color: white;
+  /*background-color: white;*/
 }
 #left-container2 {
-  background-color: white;
+  /*background-color: white;*/
   margin-top: 10px;
 }
 .header-left-align {
@@ -121,7 +121,7 @@ export default {
       else{
         console.log("fail")
         this.userName="userName"
-      }  
+      }
     })
     if(!_this.inject_topics){
       _this.queryTopicsBaseOnHeat(1, 5).then(Response => {
@@ -129,9 +129,9 @@ export default {
         _this.topics = Response.data.data;
       })
     }else{
-      _this.topics = _this.inject_topics 
+      _this.topics = _this.inject_topics
     }
-    
+
   },
   methods: {
     tapTopic(topic) {

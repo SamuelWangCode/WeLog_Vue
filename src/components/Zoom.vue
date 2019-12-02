@@ -1,10 +1,10 @@
-<style scoped>
+<style>
 #root-div {
   position: fixed;
   height: 100%;
   width: 100%;
   overflow: scroll;
-  background-color: #F5F5F5;
+  /*background-color: #F5F5F5;*/
 }
 /* #background-top-container {
   height: 320px;
@@ -112,7 +112,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-} 
+}
 .TabContainer {
   margin-top: 0px;
   margin-right: 0px;
@@ -241,30 +241,34 @@
 	position: fixed;
 	z-index:99;
   margin:auto;
-left:0;
-right:0;
-top:0;
-bottom:0;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
 }
 
 .ProfileImg {
-  margin-top: 5%;
-  margin-left: 40%;
+  margin-top: 7%;
+  margin-left: 45%;
 }
 
 .avartarRight{
-  height: 200px;
+  height:100px;
   float: left;
 }
 
 .name{
-  font-size: 40px;
-  margin-left: 30%;
+  font-size: 16px;
+  margin-left: 16%;
+  margin-top: 5px;
+  color:#010101;
 }
 
 .numbers{
-  margin-left: 30%;
-  margin-top: 5%;
+  margin-top: 4%;
+}
+.ivu-tabs-nav .ivu-tabs-tab:hover {
+  color: #4000FF;
 }
 
 </style>
@@ -334,7 +338,7 @@ bottom:0;
         </div>
 <hr />
         <div id="display-container">-->
-          
+
 
           <!--display tweets-->
           <!-- <div v-if="navStatus.tweetsShow" id="tweets-container">
@@ -385,7 +389,7 @@ bottom:0;
       </div>
     </div> -->
     <div class="ProfileImg">
-        <Avatar style="width:200px;height:200px;border-radius:50%;float:left;" :src="avatar"></Avatar>
+        <Avatar style="width:100px;height:100px;border-radius:50%;float:left;" :src="avatar"></Avatar>
         <FollowButton
               v-bind:followerCount.sync="followerCount"
               v-bind:isFollowing.sync="isFollowing"
@@ -397,13 +401,13 @@ bottom:0;
             {{nickname}}
           </div>
           <div class="numbers">
-            <Button type="text" style="font-size:20px;">Welog<br>{{postsCount}}</Button>
-            <Button type="text" style="font-size:20px;">Following<br>{{followingCount}}</Button>
-            <Button type="text" style="font-size:20px;">Followers<br>{{followerCount}}</Button>
+            <Button type="text" style="font-size:16px;">Welog<br>{{postsCount}}</Button>
+            <Button type="text" style="font-size:16px;">Following<br>{{followingCount}}</Button>
+            <Button type="text" style="font-size:16px;">Followers<br>{{followerCount}}</Button>
           </div>
         </div>
     </div>
-    <Tabs type="line" style="margin-top:5%;margin-left:auto;margin-right:auto;width:50%;background-color:white;">
+    <Tabs type="line" style="margin-top:4%;margin-left:auto;margin-right:auto;width:80%;">
         <TabPane label="Welog">
           <tweets
               @stop_loading="stop_loading"

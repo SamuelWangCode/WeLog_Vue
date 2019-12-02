@@ -57,7 +57,7 @@ export default {
   position: fixed;
   height: 100%;
   width: 100%;
-  background-color:#F5F5F5;
+  /*background-color:#F5F5F5;*/
   overflow: auto;
 }
 #middle-container{
@@ -71,10 +71,10 @@ export default {
 	position: fixed;/*固定位置*/
 	z-index:99;/*设置优先级显示，保证不会被覆盖*/
   margin:auto;
-left:0;
-right:0;
-top:0;
-bottom:0;
+ left:0;
+ right:0;
+ top:0;
+ bottom:0;
 }
 </style>
 

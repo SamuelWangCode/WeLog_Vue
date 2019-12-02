@@ -12,8 +12,8 @@
 }
 .PostSenderContainer {
   width:100%;
-  border: 1px solid #e6ecf0;
-  background-color: #E8F5FD;
+  /*border: 1px solid #e6ecf0;*/
+  background-color: #f6f6f6;
   padding: 10px 12px;
   display: flex;
 }
@@ -86,7 +86,7 @@ ul li{
   }
   #middle-container{
     width: 40%;
-    background-color: white;
+    /*background-color: white;*/
     margin-left: auto;
     margin-right: auto;
     margin-top: 70px

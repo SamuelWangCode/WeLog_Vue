@@ -17,7 +17,7 @@
           </MenuItem>
           <Button shape="circle" @click="handleSearch" icon="ios-search" style="border:0;"></Button>
           <Input v-model = "model13" @keyup.enter.native="handleSearch" placeholder="search in twitter" style="width: 25%;"></Input>
-          <Button type="primary" style="float:right;margin-top:15px;" @click = "signOut">Log out</Button>
+          <Button type="primary" style="float:right;margin-top:15px;" @click = "signOut">LOG OUT</Button>
         </Menu>
       </nav>
     </section>
@@ -128,7 +128,6 @@
 <style>
   #app{
     font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
-    
   }
   .navBar{
     height: 60px;
@@ -138,16 +137,17 @@
     width: 100%;
     border-bottom: 1px solid #e6ecf0;
   }
-  .ivu-input:hover{
-    border-color: #4000FF;
-  }
+  /*.ivu-input:hover{*/
+  /*  border-color: #4000FF;*/
+  /*}*/
   .ivu-btn{
     font-weight: 500;
     border-radius: 0;
+    font-size:medium;
   }
   .ivu-btn-primary{
     color:#FDFDFE;
-    background-color: #FD146C;
+    background-color: #ff136b;
   }
   .ivu-btn-primary:hover{
     background-color: #0C0C0C;

@@ -5,13 +5,11 @@
   width: 100%;
 }
 .load-more {
-  /* font-size: 30px;*/
+   font-size: 15px;
   font-weight: bold;
-  color:#0C0C0C;
+  color:#4000ff;
   text-align: center;
   margin-bottom: 20px;
-  border-radius: 10px;
-  background-color: white;
   width: 100%;
 }
 

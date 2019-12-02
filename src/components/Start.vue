@@ -263,7 +263,7 @@
     letter-spacing: 1px;
   }
   .ivu-btn-text{
-    color:#FD146C;
+    color:#ff136b;
   }
   .ivu-btn-primary{
     color:#FDFDFE;
@@ -307,7 +307,7 @@
     right:0;
   }
   .ivu-drawer-close .ivu-icon-ios-close{
-    color:#FD146C;
+    color:#ff136b;
     font-size: 45px;
     font-weight: 600;
   }
@@ -333,7 +333,7 @@
     color: #0C0C0C;
     outline: none;
     transition: border-bottom-color .5s linear;
-    border-bottom-color: #FD146C;
+    border-bottom-color: #ff136b;
   }
   .drawer-footer{
     width: 100%;

@@ -37,7 +37,7 @@ export default {
   display: inline-block;
   position: absolute;
   top: 0;
-  background-color: #1DA1F2;
+  background-color:#ff136b;
   border-radius: 100%;
 
   -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
