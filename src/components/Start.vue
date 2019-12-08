@@ -103,16 +103,16 @@
             let data = {
               // usernameL: this.usernameL,
               // passwordL: this.passwordL
-              email: this.usernameL,
+              name: this.usernameL,
               password: this.passwordL
             }
             this.signIn(data).then(Response=>{
               console.log(Response);
-              if(Response.data.code==200 && Response.data.message=="Sign in success")
+              if(Response.data.code==200 && Response.data.message=="login success")
               {
-                this.checkLogin().then(Response=>{
-                  console.log('aa',Response)
-                })
+                // this.checkLogin().then(Response=>{
+                //   console.log('aa',Response)
+                // })
                 this.loading=false
                 this.$Notice.success({
                   title: 'Login Success!',
@@ -123,7 +123,7 @@
                 console.log(document.cookie)
                 this.$router.push("/home");
               }
-              else if(Response.data.code==200 && Response.data.message=="E-mail or Password Wrong")
+              else if(Response.data.code==200 && Response.data.message=="wrong username or password")
               {
                 this.loading=false
                 this.$Notice.error({
@@ -134,7 +134,7 @@
               else{
                 this.loading=false
                 this.$Notice.error({
-                  title: "You have already loged in.",
+                  title: "Cannot connect to server.",
                   desc:''
                 })
               }
@@ -172,9 +172,8 @@
           try {
             console.log("start")
             let data = {
-              usernameR: this.usernameR,
-              passwordR: this.passwordR,
-              confirmPassword: this.confirmPassword
+              name: this.usernameR,
+              password: this.passwordR,
             }
 
             this.register(data).then(Response=>{
@@ -307,9 +306,10 @@
     right:0;
   }
   .ivu-drawer-close .ivu-icon-ios-close{
-    color:#ff136b;
+    /* color:#ff136b; */
+    /* background-color: white; */
     font-size: 45px;
-    font-weight: 600;
+    /* font-weight: 600; */
   }
   .login-input input {
     width:25vw;

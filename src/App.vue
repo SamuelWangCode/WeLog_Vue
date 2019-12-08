@@ -44,11 +44,10 @@
     mounted(){
       let _this=this;
       this.userID = _this.getCookies("userID")
-      console.log(id);
-      this.getAt();
-        setInterval(function () {
-          _this.getAt();
-        },5000)
+      // this.getAt();
+        // setInterval(function () {
+        //   _this.getAt();
+        // },5000)
         },
 
     methods:{
@@ -106,21 +105,21 @@
           };
         }
       },
-      getAt(){
-        try{
-          console.log("艾特")
-            this.queryUnreadAt().then((response)=>{
-              console.log("艾特數量", response)
-              if(response.data.code==200&&response.data.message=="success"){
-                console.log("設置mentionedCount")
-                this.mentionedCount=response.data.data
-              }
-            })
-        }
-        catch (e) {
-          console.log("cannot connect to server!")
-        }
-      }
+      // getAt(){
+      //   try{
+      //     console.log("艾特")
+      //       this.queryUnreadAt().then((response)=>{
+      //         console.log("艾特數量", response)
+      //         if(response.data.code==200&&response.data.message=="success"){
+      //           console.log("設置mentionedCount")
+      //           this.mentionedCount=response.data.data
+      //         }
+      //       })
+      //   }
+      //   catch (e) {
+      //     console.log("cannot connect to server!")
+      //   }
+      // }
     },
   }
 </script>

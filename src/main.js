@@ -59,20 +59,20 @@ function checkString(){
 function post(url, data){
   return axios({
     method: "POST",
-    url: "http://localhost:12293/" + url,
+    url: "http://meeting123.xiaomy.net/" + url,
     //url: url,
     data: data,
   })
 }
 function get(url){
-  return axios.get("http://localhost:12293/" + url);
+  return axios.get("http://meeting123.xiaomy.net/" + url);
 }
 ///////////////////////////////////////////
 //USER
-Vue.prototype.checkLogin = function (){
-  return get("api/User/check_login")
-}
-//getUserPublicInfo
+// Vue.prototype.checkLogin = function (){
+//   return get("api/User/check_login")
+// }
+// //getUserPublicInfo
 Vue.prototype.getUserPublicInfo = function (user_id)
 {
   if(!checkNumber(user_id)){
@@ -80,12 +80,12 @@ Vue.prototype.getUserPublicInfo = function (user_id)
   }
   return get("api/User/getUserPublicInfo/" + user_id);
 }
-//getUserAllInfo
-Vue.prototype.getUserAllInfo = function (){
-  return get(
-    "api/User/getAllUserInfo"
-  );
-}
+// //getUserAllInfo
+// Vue.prototype.getUserAllInfo = function (){
+//   return get(
+//     "api/User/getAllUserInfo"
+//   );
+// }
 //register(data : {email, password, nickname})
 Vue.prototype.register = function (data){
   console.log("register run")
@@ -103,46 +103,46 @@ Vue.prototype.signIn = function (data){
   return post("api/User/signIn", data);
 }
 //editInfo(data: {nickname, password. realname, gender, self_introduction})
-Vue.prototype.editInfo = function (data){
-  if(!checkString(data.nickname, data.password, data.realname, data.gender, data.self_introduction)){
-    return null;
-  }
-  return post("api/User/editInfo", data);
-}
+// Vue.prototype.editInfo = function (data){
+//   if(!checkString(data.nickname, data.password, data.realname, data.gender, data.self_introduction)){
+//     return null;
+//   }
+//   return post("api/User/editInfo", data);
+// }
 //setAvatar(avatar_id)
-Vue.prototype.setAvatar = function (avatar_id){
-  if(!checkNumber(avatar_id)){
-    return null;
-  }
-  return get("api/User/setAvatar/" + avatar_id);
-}
+// Vue.prototype.setAvatar = function (avatar_id){
+//   if(!checkNumber(avatar_id)){
+//     return null;
+//   }
+//   return get("api/User/setAvatar/" + avatar_id);
+// }
 //getAvatarImageSrc(user_id)
-Vue.prototype.getAvatarImageSrc = function (user_id){
-  if(!checkNumber(user_id)){
-    return null;
-  }
-  return get("api/User/getAvatarImageSrc/" + user_id);
-}
+// Vue.prototype.getAvatarImageSrc = function (user_id){
+//   if(!checkNumber(user_id)){
+//     return null;
+//   }
+//   return get("api/User/getAvatarImageSrc/" + user_id);
+// }
 //logOut()
 Vue.prototype.logOut = function (){
   return get("api/User/logOut");
 }
 //uploadAvatar(formData)
 // formData : {'file': file}
-Vue.prototype.uploadAvatar = function (params,config){
-  return axios
-  .post(
-    "/api/User/uploadAvatar",
-    params,
-    config
-  )
-}
+// Vue.prototype.uploadAvatar = function (params,config){
+//   return axios
+//   .post(
+//     "/api/User/uploadAvatar",
+//     params,
+//     config
+//   )
+// }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //RECOMMEND
 //getRecommendUsers()
-Vue.prototype.getRecommendUsers = function(){
-  return get("api/Recommend/getRecommendUsers");
-}
+// Vue.prototype.getRecommendUsers = function(){
+//   return get("api/Recommend/getRecommendUsers");
+// }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //SEARCH
 //search(searchKey)
@@ -172,14 +172,14 @@ Vue.prototype.queryMessagesContains = function(topic_id, startFrom, limitation){
   return post("api/Topic/queryMessagesContains/" + topic_id, data);
 }
 //queryTopicsBaseOnHeat(startFrom, limitation)
-Vue.prototype.queryTopicsBaseOnHeat = function(startFrom, limitation){
+// Vue.prototype.queryTopicsBaseOnHeat = function(startFrom, limitation){
 
-  var data = {
-    startFrom : startFrom,
-    limitation : limitation
-  }
-  return post("api/Topic/queryTopicsBaseOnHeat", data);
-}
+//   var data = {
+//     startFrom : startFrom,
+//     limitation : limitation
+//   }
+//   return post("api/Topic/queryTopicsBaseOnHeat", data);
+// }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //RELATION
 var RELATION = "api/Relation/";
@@ -272,50 +272,50 @@ Vue.prototype.checkUserLikesMessage = function (user_id, message_id){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRIVATE_LETTER私信
-var PRIVATE_LETTER = "api/PrivateLetter/";
-//queryForMe(startFrom, limitation)
-Vue.prototype.queryForMe = function (startFrom, limitation){
+// var PRIVATE_LETTER = "api/PrivateLetter/";
+// //queryForMe(startFrom, limitation)
+// Vue.prototype.queryForMe = function (startFrom, limitation){
 
-  var data = {
-    startFrom : startFrom,
-    limitation: limitation
-  }
-  return post(PRIVATE_LETTER + "queryForMe", data);
-}
+//   var data = {
+//     startFrom : startFrom,
+//     limitation: limitation
+//   }
+//   return post(PRIVATE_LETTER + "queryForMe", data);
+// }
 //sendPrivateLetter(user_id, letter)
-//发送私信
-Vue.prototype.sendPrivateLetter = function(user_id, content){
-  if(!checkNumber(user_id) || !checkString(content)){
-    return null;
-  }
-  var data = {
-    private_letter_content: content
-  }
-  return post(PRIVATE_LETTER + "send/" + user_id, data);
-}
+// //发送私信
+// Vue.prototype.sendPrivateLetter = function(user_id, content){
+//   if(!checkNumber(user_id) || !checkString(content)){
+//     return null;
+//   }
+//   var data = {
+//     private_letter_content: content
+//   }
+//   return post(PRIVATE_LETTER + "send/" + user_id, data);
+// }
 //deletePrivateLetter(private_letter_id)
-Vue.prototype.deletePrivateLetter = function (private_letter_id){
-  if(!checkNumber(private_letter_id)){
-    return null;
-  }
-  return get(PRIVATE_LETTER + "delete/" + private_letter_id);
-}
+// Vue.prototype.deletePrivateLetter = function (private_letter_id){
+//   if(!checkNumber(private_letter_id)){
+//     return null;
+//   }
+//   return get(PRIVATE_LETTER + "delete/" + private_letter_id);
+// }
 ///api/PrivateLetter/queryLatestContact(startForm, limitation)
-Vue.prototype.queryLatestContact = function(startFrom, limitation){
-  var data = {
-    startFrom: startFrom,
-    limitation: limitation
-  }
-  return post(PRIVATE_LETTER + "queryLatestContact", data);
-}
+// Vue.prototype.queryLatestContact = function(startFrom, limitation){
+//   var data = {
+//     startFrom: startFrom,
+//     limitation: limitation
+//   }
+//   return post(PRIVATE_LETTER + "queryLatestContact", data);
+// }
 ///api/PrivateLetter/querySpecified
-Vue.prototype.querySpecified = function(contact_id, startFrom, limitation){
-  var data = {
-    startFrom: startFrom,
-    limitation: limitation
-  }
-  return post(PRIVATE_LETTER + "querySpecified/" + contact_id, data);
-}
+// Vue.prototype.querySpecified = function(contact_id, startFrom, limitation){
+//   var data = {
+//     startFrom: startFrom,
+//     limitation: limitation
+//   }
+//   return post(PRIVATE_LETTER + "querySpecified/" + contact_id, data);
+// }
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -410,19 +410,19 @@ Vue.prototype.getCollectionNum = function(user_id){
 }
 //////////////////////////////////////////////////////////////////////////////////////////////
 //AT 艾特
-var AT = "api/At/";
-//queryAtMe(startFrom, limitation)
-Vue.prototype.queryAtMe = function(startFrom, limitation){
-  var data = {
-    startFrom : startFrom,
-    limitation : limitation
-  }
-  return post(AT + "query", data);
-}
-Vue.prototype.queryUnreadAt=function(){
-  console.log("Atljklk")
-  return get(AT+"queryUnreadAt");
-}
+// var AT = "api/At/";
+// //queryAtMe(startFrom, limitation)
+// Vue.prototype.queryAtMe = function(startFrom, limitation){
+//   var data = {
+//     startFrom : startFrom,
+//     limitation : limitation
+//   }
+//   return post(AT + "query", data);
+// }
+// Vue.prototype.queryUnreadAt=function(){
+//   console.log("Atljklk")
+//   return get(AT+"queryUnreadAt");
+// }
 
 //////////////////////////////////////////////////////
 //评论
