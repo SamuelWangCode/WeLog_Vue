@@ -17,6 +17,7 @@
 </template>
 <script>
 import ImageHandler from "./ImageHandler";
+import axios from '../../utils/axios'
 export default {
   name: "User-Item",
   components: {ImageHandler},
@@ -44,7 +45,7 @@ export default {
   methods: {
     get_info: function(user_id) {
       console.log(user_id)
-      this.getUserPublicInfo(user_id).then(Response => {
+      axios.getUserPublicInfo(user_id).then(Response => {
         if (Response.data.message == "success") {
           this.load_info(Response.data.data);
           console.log("user_id:"+user_id);

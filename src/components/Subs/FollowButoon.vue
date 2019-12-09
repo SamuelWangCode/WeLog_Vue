@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import cookie from '../../utils/cookie'
 export default {
   data() {
     return {
@@ -97,7 +98,7 @@ export default {
         return this.isFollowing ? "unfollow" : "follow";
     },
     isShow(){
-      if(this.getCookie('userID')&&this.visitor&&this.getCookie('userID').toString()!=this.visitor.toString()){
+      if(cookie.getCookie('userID')&&this.visitor&&cookie.getCookie('userID').toString()!=this.visitor.toString()){
         return true;
       }else{
         return false;

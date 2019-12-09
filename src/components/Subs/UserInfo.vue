@@ -4,7 +4,7 @@
       <router-link :to="{ path: '/Zoom', query: { visitor_id: userID}}">
       <div style="float:left;margin-left:20px; margin-top:50px;">
       <Avatar
-        v-bind:src="address"
+        src="static/timg.jpg"
         shape="circle"
         on-error
         size="large"
@@ -23,20 +23,6 @@
       <br />
       <br />
       <br />
-    </ElContainer>
-
-    <ElContainer id="left-container2">
-      <el-header class="header-left-align">Trends for you</el-header>
-      <ul>
-        <div id="trends-container" v-for="topic in topics">
-          <a>
-            <div v-on:click="tapTopic(topic)">
-              <div id="trends-name">{{topic.topic_content}}</div>
-              <div id="tweets-times">{{ topic.topic_heat }} heat</div>
-            </div>
-          </a>
-        </div>
-      </ul>
     </ElContainer>
   </div>
 </template>
@@ -89,8 +75,10 @@
 </style>
 
 <script>
+import axios from '../../utils/axios'
+import cookie from '../../utils/cookie'
 export default {
-  name: "trends",
+  name: "userInfo",
   props:{
     inject_topics: {
       required: false,
@@ -99,23 +87,19 @@ export default {
   },
   data() {
     return {
-      topics: undefined,
-      address: "http://localhost:12293/avatars/0.jpg",
       userName:"userName",
       userID:"0"
     };
   },
   mounted() {
-    var _this = this;
-    this.userID = _this.getCookie("userID")
+    this.userID = cookie.getCookie("userID")
     console.log("登录：", this.userID)
     console.log(this.userID)
-    this.getUserPublicInfo(this.userID).then(Response=>{
+    axios.getUserPublicInfo(this.userID).then(Response=>{
     console.log(Response)
     if(Response.data.code==200 && Response.data.message=="success")
       {
         this.userName = Response.data.data.nickname
-        this.address = Response.data.data.avatar_url
         console.log(this.userName)
       }
       else{
@@ -123,29 +107,6 @@ export default {
         this.userName="userName"
       }
     })
-    if(!_this.inject_topics){
-      _this.queryTopicsBaseOnHeat(1, 5).then(Response => {
-        console.log(Response);
-        _this.topics = Response.data.data;
-      })
-    }else{
-      _this.topics = _this.inject_topics
-    }
-
-  },
-  methods: {
-    tapTopic(topic) {
-      console.log("测试点击 topic_id:", topic.topic_id);
-      this.$router.push({
-        path: "/Topic",
-        query: { topic_id: topic.topic_id, topic_name: topic.topic_content }
-      });
-    }
-  },
-  watch:{
-    inject_topics: function(n, o){
-      this.topics = n;
-    }
   },
 };
 </script>

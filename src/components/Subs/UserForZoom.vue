@@ -25,6 +25,7 @@
 <script>
 import ImageHandler from "./ImageHandler";
 import FollowButton from "./FollowButoon";
+import axios from '../../utils/axios'
 export default {
   name: "UserForZoom",
   data() {
@@ -57,7 +58,7 @@ export default {
     },
     get_info: function(user_id) {
       console.log(user_id);
-      this.if_following_by_me(user_id).then(Response => {
+      axios.if_following_by_me(user_id).then(Response => {
         this.isFollowing = Response.data.data.if_following;
       });
       this.getUserPublicInfo(user_id).then(Response => {

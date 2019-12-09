@@ -4,239 +4,7 @@
   height: 100%;
   width: 100%;
   overflow: scroll;
-  /*background-color: #F5F5F5;*/
 }
-/* #background-top-container {
-  height: 320px;
-  width: 100%;
-  background-color: deepskyblue;
-}
-.PersonalWall {
-  position: relative;
-  height: 380px;
-  z-index: 1;
-}
-.WallImgContainer {
-  height: 320px;
-}
-.BkgImgContainer {
-  height: 320px;
-  background: #dedede no-repeat center;
-}
-.ProfileImgContainer {
-  position: relative;
-  margin-left: 122px;
-}
-
-.ProfileImgContainer .ProfileImgLink {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  background-color: black;
-  display: inline-block;
-  position: relative;
-}
-.ProfileImgContainer img {
-  position: relative;
-  width: 100%;
-}
-.ProfileInfoContainer {
-  height: 60px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
-  background-color: white;
-}
-#middle-container {
-  width: 100%;
-  background-color: rgb(230, 236, 240);
-}
-
-#middle-left-container {
-  float: left;
-  width: 30%;
-  background-color: white;
-}
-
-#nickname-container {
-  height: 40px;
-  font-size: 30px;
-  font-weight: bold;
-  color: black;
-  float: top;
-}
-
-#selfIntroduction-container {
-  font-size: 15px;
-  background-color: rgb(230, 236, 240);
-}
-
-#introduction {
-  margin-top: 20px;
-  margin-left: 30px;
-  margin-right: 30px;
-  display:block;
-  word-break: break-all;
-  word-wrap: break-word;
-}
-
-#middle-middle-container {
-  float: left;
-  height: 100%;
-  width: 40%;
-  background-color: white;
-}
-
-#display-container {
-  padding-top:2%;
-  margin-top: 0px;
-  z-index: 100;
-}
-
-#middle-right-container {
-  float: left;
-  width: 30%;
-  background-color: rgb(230, 236, 240);
-}
-
-#middle-right-top-container {
-  height: 81px;
-  background-color: white;
-
-}
-
-/* #follow-button-container {
-  margin-bottom: 20px;
-  margin-left: 70px;
-  height: 80px;
-  width: 30%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.TabContainer {
-  margin-top: 0px;
-  margin-right: 0px;
-  display: flex;
-  width: 100%;
-  height: 80px;
-  background-color: white;
-}
-.TabItem-four {
-  background-color: white;
-  margin-top: 0px;
-  display: block;
-  height: 100%;
-  position: relative;
-  border: 0px;
-  width: 25%;
-  border-radius:0;
-}
-.TabItem-four-Show{
-  background-color: white;
-  margin-top: 0px;
-  display: block;
-  height: 100%;
-  position: relative;
-  width: 25%;
-  border-radius:0;
-  border-bottom:1px solid blue;
-}
-.TabItem-three {
-  background-color: white;
-  margin-top: 0px;
-  display: block;
-  height: 100%;
-  position: relative;
-  border: 0px;
-  width: 33%;
-  border-radius:0;
-}
-.TabItem-three-Show{
-  background-color: white;
-  margin-top: 0px;
-  display: block;
-  height: 100%;
-  position: relative;
-  width: 33%;
-  border-radius:0;
-  border-bottom:1px solid blue;
-}
-
-
-.to-follow-list {
-  text-align: left;
-  margin-top: 20px;
-  line-height: 50px;
-}
-
-.TabItem:after {
-  content: "";
-  display: block;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  opacity: 0;
-  transition: 400ms;
-  background-color: #0084b4;
-}
-
-.TabTxt {
-  background-color: white;
-  position: relative;
-  top: 30%;
-  transform: translateY(-50%);
-  margin-top: 30px;
-  padding: 0 30px;
-
-  text-align: center;
-}
-.TabTitle {
-  color: #657786;
-  font-weight: bold;
-  font-size: 15px;
-}
-.Count {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 2px;
-}
-
-#ad:hover {
-  text-decoration: underline;
-  transition: margin-left;
-}
-
-.message-button-container {
-  margin-top: 20px;
-  height: 45px;
-  width: 100px;
-  font-weight: bold;
-  font-size: 16px;
-    margin-left: 60px;
-  float:left;
-}
-
-.follow-button-container {
-  margin-top: 20px;
-  height: 45px;
-  width: 100px;
-  font-weight: bold;
-  font-size: 17px;
-  margin-left: 20px;
-  float:left;
-}
-
-.el-tabs__item {
-  white-space: pre-line !important;
-  font-weight: bold !important;
-}
-.following-container{
-  height: 20%
-}
-.followers-container{
-
-} */
 .center-fix{
 	position: fixed;
 	z-index:99;
@@ -276,120 +44,8 @@
   <div id="root-div">
     <div id="topAnchor"></div>
     <loadingAnimate v-if="loading" class="center-fix" />
-    <!-- <div class="WallImgContainer">
-      <div class="BkgImgContainer">
-        <img :src="personBkgImg" style="height: 320px;width: 100%" />
-      </div>
-      <div class="ProfileImgContainer">
-        <div class="ProfileImg">
-          <a href="#" class="ProfileImgLink">
-            <Avatar style="width:200px;height:200px;border-radius:50%;" :src="avatar"></Avatar>
-          </a>
-        </div>
-      </div> -->
-    <!-- </div> -->
-
-    <!-- <div id="middle-container">
-      <div id="middle-left-container">
-        <div id="decoration" style="height: 80px;background-color: white;"></div>
-          <div id="selfIntroduction-container">
-            <div id="introduction-container">
-              <div id="nickname-container">
-                {{nickname}}
-                <img :src="confirm_url" style="height: 20px" />
-              </div>
-              <div style="font-size: 20px;padding-right: 20px">@ {{nickname}}</div>
-            </div>
-            <div id="introduction">{{selfIntroduction}}</div>
-          </div>
-      </div> -->
-
-      <!-- <div id="middle-middle-container">
-        <div class="TabContainer">
-          <Button
-            v-bind:class="getRightClass('tweetsShow')"
-            @click="tweetsClicked"
-          >
-            <div class="TabTxt">
-              <div class="TabTitle">Tweets</div>
-              <div class="Count">{{postsCount}}</div>
-            </div>
-          </Button>
-          <Button
-            v-bind:class="getRightClass('followingShow')"
-            exact-active-class="active"
-            @click="followingClicked"
-          >
-            <div class="TabTxt">
-              <div class="TabTitle">Following</div>
-              <div class="Count">{{followingCount}}</div>
-            </div>
-          </Button>
-          <Button
-            v-bind:class="getRightClass('followersShow')"
-            exact-active-class="active"
-            @click="followersClicked"
-          >
-            <div class="TabTxt">
-              <div class="TabTitle">Followers</div>
-              <div class="Count">{{followerCount}}</div>
-            </div>
-          </Button>
-        </div>
-<hr />
-        <div id="display-container">-->
-
-
-          <!--display tweets-->
-          <!-- <div v-if="navStatus.tweetsShow" id="tweets-container">
-            <tweets
-              @stop_loading="stop_loading"
-              :ref="'twe1'"
-              v-on:change_following="change_follow(arguments)"
-              type="userhome"
-              v-bind:info="visitor"
-            ></tweets>
-          </div> -->
-
-          <!--display following-->
-          <!-- <div v-show="navStatus.followingShow" id="following-container">
-            <div v-for="user in followingList" v-bind:key="user.user_id">
-              <userForZoom
-                v-bind:p_user_id="user.user_id"
-                :ref="'following'+user.user_id"
-                @change_my_follow="change_my_follow(arguments)"
-              ></userForZoom>
-            </div>
-          </div> -->
-
-          <!--display followers-->
-          <!-- <div v-show="navStatus.followersShow" id="followers-container">
-            <div v-for="user in followersList" v-bind:key="user.user_id">
-              <userForZoom
-                v-bind:p_user_id="user.user_id"
-                :ref="'follower'+user.user_id"
-                @change_my_follow="change_my_follow(arguments)"
-              ></userForZoom>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="middle-right-container">
-        <div id="middle-right-top-container">
-
-          <div v-if="visitor!=user" class="follow-button-container">
-            <FollowButton
-              v-bind:followerCount.sync="followerCount"
-              v-bind:isFollowing.sync="isFollowing"
-              @finish_update="follow_visitor($event)"
-              v-bind:visitor="Number(visitor)"
-            ></FollowButton>
-          </div>
-        </div>
-      </div>
-    </div> -->
     <div class="ProfileImg">
-        <Avatar style="width:100px;height:100px;border-radius:50%;float:left;" :src="avatar"></Avatar>
+        <Avatar style="width:100px;height:100px;border-radius:50%;float:left;" src="static/timg.jpg"></Avatar>
         <FollowButton
               v-bind:followerCount.sync="followerCount"
               v-bind:isFollowing.sync="isFollowing"
@@ -441,14 +97,14 @@
 </template>
 
 <script>
-import axios from "axios";
-axios.defaults.withCredentials = true;
 import loadingAnimate from "./animate/loading";
 import Tweets from "./Subs/Tweets.vue";
 import User from "./Subs/User";
 import UserForZoom from "./Subs/UserForZoom";
 import FollowButton from "./Subs/FollowButoon"
 import backToTop from "./Subs/BackToTop"
+import axios from '../utils/axios'
+import cookie from '../utils/cookie'
 
 
 export default {
@@ -502,11 +158,11 @@ export default {
   created() {
 
     this.visitor = Number(this.$route.query.visitor_id);
-    this.user = this.getCookies("userID");
+    this.user = cookie.getCookie("userID");
     console.log("user", this.user);
     try {
       var _this = this;
-      this.getUserPublicInfo(this.visitor).then(response => {
+      axios.getUserPublicInfo(this.visitor).then(response => {
         _this.user_info = response.data.data;
         _this.nickname = response.data.data.nickname;
         console.log(this.nickname);
@@ -528,7 +184,7 @@ export default {
         _this.followersList = res[2].data.data;
         console.log("这个人的followersList", _this.followersList);
       });
-      this.getUserPublicInfo(this.user).then(response => {
+      axios.getUserPublicInfo(this.user).then(response => {
         this.my_info = response.data.data;
       });
     } catch (e) {
@@ -541,7 +197,7 @@ export default {
   mounted: function getUser() {
     // this.loading = true;
     this.visitor = Number(this.$route.query.visitor_id);
-    this.user = this.getCookies("userID");
+    this.user = cookie.getCookie("userID");
     console.log("user", this.user);
   },
   methods: {
@@ -549,9 +205,6 @@ export default {
       this.navStatus.followersShow = false;
       this.navStatus.followingShow = false;
       this.navStatus.tweetsShow = false;
-    },
-    getCookies(a) {
-      return this.getCookie(a);
     },
     stop_loading(){
       this.loading = false;
@@ -612,7 +265,7 @@ export default {
       if (this.$refs.twe2) {
         this.$refs.twe2.change_follow2(event[0], event[1]);
       }
-      if (this.visitor == this.getCookie("userID")) {
+      if (this.visitor == cookie.getCookie("userID")) {
         var k = [];
         for (var i = 0; i < this.followingList.length; ++i) {
           if (this.followingList[i].user_id.toString() != event[1].toString()) {

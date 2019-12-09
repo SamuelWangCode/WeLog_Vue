@@ -144,15 +144,13 @@ ul li{
 
   <loadingAnimate v-show="loading" class="center-fix"></loadingAnimate>
 
-
-    <Trends></Trends>
-
+    <UserInfo></UserInfo>
     <div id="middle-container">
      <ElContainer  id="middle-container1" >
 
 
         <div class="PostSenderContainer">
-         <Avatar :src=address shape="circle" on-error="" size="large" style="width:50px;height:50px;border-radius:50%;"/>
+         <Avatar src="static/timg.jpg" shape="circle" on-error="" size="large" style="width:50px;height:50px;border-radius:50%;"/>
 
           <div class="EditerContainer" style="margin-left:-5px;">
             <!--
@@ -178,7 +176,7 @@ ul li{
                     </div>
                 </template>
               </div>
-              <Upload
+              <!-- <Upload
                 ref="upload"
                 :show-upload-list="false"
                 :on-success="handleSuccess"
@@ -194,13 +192,13 @@ ul li{
                   <div style="width: 58px;height:58px;line-height: 58px;">
                     <Icon type="ios-camera" size="20"></Icon>
                   </div>
-              </Upload>
+              </Upload> -->
               </div>
-              <Modal title="Preview" v-model="visible">
+              <!-- <Modal title="Preview" v-model="visible">
                 <img :src="img_preview_src" v-if="visible && is_previewing_img" style="width: 100%">
                 <video controls="controls" v-else-if="visible && is_previewing_video" id="video" style="width: 100%" :src="video_preview_src">
                 </video>
-              </Modal>
+              </Modal> -->
             </div>
 
             <!-- sdadasdasdasdsad ---------------------------------------------------------------------------->
@@ -229,17 +227,14 @@ ul li{
 
      </ElContainer>
     </div>
-        <whoToFollows></whoToFollows>
         <backToTop></backToTop>
   </div>
 </template>
 <script>
-  import axios from "axios"
-  axios.defaults.withCredentials = true;
+  import axios from "../utils/axios"
   import loadingAnimate from "./animate/loading"
   import Tweets from "./Subs/Tweets"
-  import Trends from "./Subs/Trends"
-  import whoToFollows from "./Subs/whoToFollows"
+  import UserInfo from "./Subs/userInfo"
   import backToTop from "./Subs/BackToTop"
   export default {
     name:'Home',
@@ -266,13 +261,12 @@ ul li{
         isEditerFocused: false,
         contentEl: null,
         inputContent: '',
-        address:""
       }
     },
     components:{
       loadingAnimate,
       "tweets":Tweets,
-      Trends,whoToFollows,
+      UserInfo,
       backToTop
     },
     mounted() {
@@ -281,12 +275,10 @@ ul li{
     console.log("登录：", userID)
     console.log(userID)
     this.uploadList = this.$refs.upload.fileList;
-    this.getUserPublicInfo(userID).then(Response=>{
+    axios.getUserPublicInfo(userID).then(Response=>{
     console.log(Response)
     if(Response.data.code==200 && Response.data.message=="success")
       {
-
-        this.address = Response.data.data.avatar_url
         console.log(this.userName)
       }
       else{
@@ -436,9 +428,6 @@ ul li{
     editerInputEventHandler (e) {
       this.inputContent = e.target.innerText.trim()
     },
-    getCookies(a){
-      return this.getCookie(a)
-    },
 
     tapTopic(topic){
       console.log("测试点击 topic_id:", topic);
@@ -456,7 +445,7 @@ ul li{
       for(let i = 0; i < this.uploadList.length; i++){
         formData.append("file"+i, this.uploadList[i]);
       }
-      this.sendMessage(formData).then(response=>{
+      axios.sendMessage(formData).then(response=>{
         //this.sendingTwitter = false;
         console.log(response);
         if(response.data.message == "success"){
@@ -480,7 +469,7 @@ ul li{
     },
     // beforeRouteEnter(to,from,next){
     //   next(vm=>{
-    //     if(!vm.getCookie("userID"))
+    //     if(!vm.cookie.getCookie("userID"))
     //     {
     //       console.log("请先登录")
     //       vm.$router.push("index")

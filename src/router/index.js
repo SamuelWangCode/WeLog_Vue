@@ -2,12 +2,10 @@ import Vue from 'vue'
 import router from 'vue-router'
 import Home from '@/components/Home'
 import Start from '@/components/Start'
-import login from '@/components/login'
-import register from '@/components/regist'
 import zoom from '@/components/Zoom'
 import Explore from '@/components/Explore'
 import SearchResult from '@/components/SearchResult'
-import Topic from '@/components/Topic'
+// import Topic from '@/components/Topic'
 Vue.use(router)
 
 export default new router({
@@ -25,22 +23,6 @@ export default new router({
       path: '/index', alias:'/',
       name: 'Start',
       component: Start,
-      meta: {
-        keepAlive: false
-      }
-    },
-    {
-      path: '/regist',
-      name: 'register',
-      component: register,
-      meta: {
-        keepAlive: false
-      }
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: login,
       meta: {
         keepAlive: false
       }
@@ -69,14 +51,6 @@ export default new router({
         keepAlive:true
       }
     },
-    {
-      path:'/topic',
-      name:'Topic',
-      component:Topic,
-      meta:{
-        keepAlive:true
-      }
-    }
   ]
 })
 

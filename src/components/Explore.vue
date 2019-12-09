@@ -2,11 +2,10 @@
 <div id="root-div">
   <div id="topAnchor"></div>
       <loadingAnimate v-if="loading" class="center-fix"/>
-      <Trends></Trends>
+      <UserInfo></UserInfo>
         <div id="middle-container" >
             <tweets @stop_loading="stop_loading" type="explore"></tweets>
         </div>
-      <whoToFollows></whoToFollows>
     <backToTop></backToTop>
 </div>
 </template>
@@ -14,15 +13,16 @@
 
 <script>
 import Tweets from "./Subs/Tweets"
-import Trends from "./Subs/Trends"
-import whoToFollows from "./Subs/whoToFollows"
+import UserInfo from "./Subs/userInfo"
 import backToTop from "./Subs/BackToTop"
 import loadingAnimation from "./animate/loading"
+import axios from '../utils/axios'
+import cookie from '../utils/cookie'
 
 export default {
     name:'explore',
     components:{
-      Trends,whoToFollows,
+      UserInfo,
       "tweets":Tweets,backToTop,loadingAnimation
     },
     data(){
@@ -41,7 +41,7 @@ export default {
     },
     // beforeRouteEnter(to,from,next){
     //   next(vm=>{
-    //     if(!vm.getCookie("userID"))
+    //     if(!vm.cookie.getCookie("userID"))
     //     {
     //       console.log("请先登录")
     //       vm.$router.push("index")

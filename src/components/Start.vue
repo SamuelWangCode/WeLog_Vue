@@ -67,9 +67,9 @@
 </template>
 
 <script>
-  import axios from 'axios'
+  import axios from '../utils/axios'
+  import cookie from '../utils/cookie'
   import loadingAnimate from "./animate/loading"
-  axios.defaults.withCredentials = true;
     export default {
         name: "Start",
         data () {
@@ -106,7 +106,7 @@
               name: this.usernameL,
               password: this.passwordL
             }
-            this.signIn(data).then(Response=>{
+            axios.signIn(data).then(Response=>{
               console.log(Response);
               if(Response.data.code==200 && Response.data.message=="login success")
               {
@@ -119,7 +119,7 @@
                   desc:''
                 })
                 var i = Response.data.data.user_id
-                this.setCookie("userID", i, 30)
+                cookie.setCookie("userID", i, 30)
                 console.log(document.cookie)
                 this.$router.push("/home");
               }
@@ -128,6 +128,14 @@
                 this.loading=false
                 this.$Notice.error({
                   title: 'Username or Password Wrong.',
+                  desc:''
+                })
+              }
+              else if(Response.data.code==200 && Response.data.message=="username exists")
+              {
+                this.loading=false
+                this.$Notice.error({
+                  title: 'Your username has been used.',
                   desc:''
                 })
               }
@@ -148,6 +156,7 @@
           }
         },
         async registEventHandler() {
+          console.log("regest Event start")
           this.loading=true;
           var regUsername=/^[a-zA-Z0-9\u4e00-\u9fa5]{1,10}$/
           var regPassword=/^[0-9a-zA-Z_#@!\?\-\\]{6,20}$/
@@ -173,10 +182,10 @@
             console.log("start")
             let data = {
               name: this.usernameR,
-              password: this.passwordR,
+              password: this.passwordR
             }
-
-            this.register(data).then(Response=>{
+            console.log(data);
+            axios.register(data).then(Response=>{
               console.log(Response.data);
               if(Response.data.code==200 && Response.data.message=="success")
               {

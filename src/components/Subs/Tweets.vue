@@ -51,7 +51,7 @@
 
 
 <script>
-import axios from "axios";
+import axios from "../../utils/axios";
 import TwiItem from "./TweetSingle";
 export default {
   name: "twitter-items",
@@ -83,9 +83,6 @@ export default {
     doFollow(item) {
       item.followByUser = !item.followByUser;
     },
-    getCookies(name) {
-      return this.getCookie(name);
-    },
 
     loadMore() {
       //测试时把整个函数替换成/**/里的内容
@@ -103,7 +100,7 @@ export default {
     downloadData() {
       this.spinShow = true;
       if (this.type == "explore") {
-        this.queryNewestMessage(
+        axios.queryNewestMessage(
           this.items.length + 1,
           10
         ).then(Response => {
@@ -116,7 +113,7 @@ export default {
       } else if (this.type == "topic") {
         //console.log("id", this.info);
         if (this.info) {
-          this.queryMessagesContains(this.info, this.items.length + 1, 10).then(
+          axios.queryMessagesContains(this.info, this.items.length + 1, 10).then(
             //this.queryFollowMessage(this.items.length + 1, 10).then(
             Response => {
               this.$emit("stop_loading");
@@ -128,29 +125,20 @@ export default {
           );
         }
       } else if (this.type == "home") {
-        this.queryFollowMessage(
+        axios.queryFollowMessage(
           this.items.length + 1,
           10
         ).then(Response => {
 
           this.$emit("stop_loading");
-          console.log("結束獲取")
+          console.log("结束获取")
           this.twiDatas = Response.data.data;
           this.generateData();
           this.spinShow = false;
         });
-      } else if (this.type == "collection") {
-        this.queryCollections(this.info, this.items.length + 1, 10).then(
-          Response => {
-            this.$emit("stop_loading");
-            this.twiDatas = Response.data.data;
-            this.generateData();
-            this.spinShow = false;
-          }
-        );
       } else if (this.type == "userhome") {
         if (this.info) {
-          this.queryMessagesOf(this.info, this.items.length + 1, 10).then(
+          axios.queryMessagesOf(this.info, this.items.length + 1, 10).then(
             Response => {
               this.$emit("stop_loading");
               this.twiDatas = Response.data.data;
@@ -161,20 +149,13 @@ export default {
         }
       } else if (this.type == "search") {
         if (this.info) {
-          this.search(this.info, this.items.length + 1, 10).then(Response => {
+          axios.search(this.info, this.items.length + 1, 10).then(Response => {
             this.$emit("stop_loading");
             this.twiDatas = Response.data.data.twitters;
             this.generateData();
             this.spinShow = false;
           });
         }
-      } else if (this.type == "notification") {
-        this.queryAtMe(this.items.length + 1, 10).then(Response => {
-          this.$emit("stop_loading");
-          this.twiDatas = Response.data.data;
-          this.generateData();
-          this.spinShow = false;
-        });
       }
     },
     //返回排序规则函数的函数

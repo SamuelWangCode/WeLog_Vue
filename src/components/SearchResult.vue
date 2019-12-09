@@ -36,30 +36,26 @@ bottom:0;
   <div id="root-div">
     <div id="topAnchor"></div>
     <loadingAnimate  v-if="loading" class="center-fix"/>
-      <Trends v-bind:inject_topics="inject_topics" v-if="flag"></Trends>
 
     <div id="middle-container">
       <tweets @stop_loading="stop_loading" type="search" v-bind:info="searchKey"></tweets>
     </div>
 
     <ElContainer id="right-container">
-      <whoToFollows v-bind:inject_toFollowList="inject_users" v-if="flag" ></whoToFollows>
     </ElContainer>
     <backToTop></backToTop>
   </div>
 </template>
 <script>
 import Tweets from "./Subs/Tweets"
-import Trends from "./Subs/Trends"
-import whoToFollows from "./Subs/whoToFollows"
 import loadingAnimate from "./animate/loading"
 import backToTop from "./Subs/BackToTop"
+import axios from '../utils/axios'
+import cookie from '../utils/cookie'
 export default {
   name: "SearchResult",
   components:{
     "tweets": Tweets,
-    Trends,
-    whoToFollows,
     loadingAnimate,backToTop
   },
   data() {
@@ -74,7 +70,7 @@ export default {
   },
   mounted(){
     console.log("搜索码为,", this.searchKey)
-    this.search(this.searchKey, 0, 10).then(response=>{
+    axios.search(this.searchKey, 0, 10).then(response=>{
           console.log("测试搜索結果", response);
           this.inject_topics = response.data.data.topics;
           this.inject_users = response.data.data.users;
@@ -104,7 +100,7 @@ export default {
   },
   // beforeRouteEnter(to,from,next){
   //     next(vm=>{
-  //       if(!vm.getCookie("userID"))
+  //       if(!vm.cookie.getCookie("userID"))
   //       {
   //         console.log("请先登录")
   //         vm.$router.push("index")

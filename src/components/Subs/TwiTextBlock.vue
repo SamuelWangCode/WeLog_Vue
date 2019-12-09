@@ -5,8 +5,6 @@
     width:100%;
     overflow:auto;
 }
-.normal-text{
-}
 .at-text{
     color: rgb(167, 90, 45);
 }
@@ -47,11 +45,6 @@ export default {
         fullText:String,
         ats:Array,
         topics:Array,
-    },
-    data(){
-        return {
-            url:"http://localhost:12293/"
-        }
     },
     computed:{
         htmlText: {

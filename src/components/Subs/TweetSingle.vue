@@ -169,11 +169,11 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "../../utils/axios";
+import cookie from '../../utils/cookie'
 import ImageHandler from "./ImageHandler";
 import CommentBlock from "./CommentBlock";
 import TwiTextBlock from "./TwiTextBlock";
-
 import VueStar from "vue-star";
 import FollowButoon from "./FollowButoon";
 export default {
@@ -199,12 +199,8 @@ export default {
     };
   },
   methods: {
-    //辅助函数，判断是不是这个浏览器cookies里用户的推特
-    getCookies(name) {
-      return this.getCookie(name);
-    },
     ifBeMyTwi() {
-      if (this.item.message_sender_user_id == this.getCookies("userID")) {
+      if (this.item.message_sender_user_id == cookie.getCookie("userID")) {
         return true;
       } else {
         return false;
@@ -226,7 +222,7 @@ export default {
       if (this.likeByUser == false) {
         this.likeByUser = true;
         this.item.message_like_num++;
-        this.like(this.item.message_id).then(Response => {
+        axios.like(this.item.message_id).then(Response => {
           if (Response.data.message == "success") {
           }
           //失败了就返回来
@@ -239,7 +235,7 @@ export default {
       } else if (this.likeByUser == true) {
         this.likeByUser = false;
         this.item.message_like_num--;
-        this.cancelLike(this.item.message_id).then(Response => {
+        axios.cancelLike(this.item.message_id).then(Response => {
           if (Response.data.message == "success") {
           }
           //失败了就返回来
@@ -257,7 +253,7 @@ export default {
         startFrom: this.comments.length,
         limitation: 10
       };
-      this.queryComment(this.item.message_id, data).then(Response => {
+      axios.queryComment(this.item.message_id, data).then(Response => {
         this.comments = Response.data.data;
       });
     },
@@ -265,11 +261,11 @@ export default {
       let data = {
         comment_content: content
       };
-      this.addComment(this.item.message_id, data).then(Response => {
+      axios.addComment(this.item.message_id, data).then(Response => {
         if (Response.data.message == "success") {
           this.commentsNum += 1;
           this.commented = true;
-          this.getUserPublicInfo(this.getCookies("userID")).then(Response => {
+          this.getUserPublicInfo(cookie.getCookie("userID")).then(Response => {
             let timeObj = new Date();
             if (Response.data.message == "success") {
               let commTemp = {
@@ -312,24 +308,24 @@ export default {
     this.followByUser = this.item.followByUser;
     this.commentsNum = this.item.message_comment_num;
     //求证是否点赞收藏关注
-    this.checkUserLikesMessage(
-      this.getCookies("userID"),
+    axios.checkUserLikesMessage(
+      cookie.getCookie("userID"),
       this.item.message_id
     ).then(Response => {
       this.likeByUser = Response.data.data.like;
     });
-    this.checkUserCollectMessage(
-      this.getCookies("userID"),
+    axios.checkUserCollectMessage(
+      cookie.getCookie("userID"),
       this.item.message_id
     ).then(Response => {
       this.collectByUser = Response.data.data.favor;
     });
-    this.if_following_by_me(this.item.message_sender_user_id).then(Response => {
+    axios.if_following_by_me(this.item.message_sender_user_id).then(Response => {
       this.followByUser = Response.data.data.if_following;
     });
     //取用户数据
         //获取以上的数据，这里由于可能是第二次拿数据，因此i+twiCount才是当前要处理的推的索引
-    this.getUserPublicInfo(this.item.message_sender_user_id).then(
+    axios.getUserPublicInfo(this.item.message_sender_user_id).then(
       Response => {
         this.userName = Response.data.data.nickname;
         this.userAvt = Response.data.data.avatar_url;
@@ -339,11 +335,11 @@ export default {
 
     //如果是转发的就取原推特条
     if (this.item.message_transpond_message_id > 0) {
-      this.queryMessage(this.item.message_transpond_message_id).then(
+      axios.queryMessage(this.item.message_transpond_message_id).then(
         Response => {
           if (Response.data.message == "success") {
             this.item.rawItem = Response.data.data;
-            this.getUserPublicInfo(
+            axios.getUserPublicInfo(
               this.item.rawItem.message_sender_user_id
             ).then(Response => {
               this.rawItemUserName = Response.data.data.nickname;
