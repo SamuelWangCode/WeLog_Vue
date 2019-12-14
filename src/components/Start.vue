@@ -101,8 +101,6 @@
           try {
             console.log("start")
             let data = {
-              // usernameL: this.usernameL,
-              // passwordL: this.passwordL
               name: this.usernameL,
               password: this.passwordL
             }
@@ -119,7 +117,7 @@
                   desc:''
                 })
                 var i = Response.data.data.user_id
-                cookie.setCookie("userID", i, 30)
+                cookie.setCookie("userID", i)
                 console.log(document.cookie)
                 this.$router.push("/home");
               }

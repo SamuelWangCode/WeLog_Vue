@@ -44,11 +44,7 @@
     mounted(){
       let _this=this;
       this.userID = _this.getCookies("userID")
-      // this.getAt();
-        // setInterval(function () {
-        //   _this.getAt();
-        // },5000)
-        },
+      },
 
     methods:{
       getCookies(a){
@@ -57,8 +53,7 @@
       isRead(){
         this.mentionedCount = 0;
         console.log("读了")
-      }
-      ,
+      },
 
       handleSearch()
       {

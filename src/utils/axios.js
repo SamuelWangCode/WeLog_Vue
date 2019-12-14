@@ -43,12 +43,12 @@ function getUserPublicInfo(user_id) {
   }
   return get("api/User/getUserPublicInfo/" + user_id);
 }
-//register(data : {email, password, nickname})
+
 function register(data) {
   console.log("register run")
   return post("api/User/signUp", data);
 }
-//signIn(data : {email, password})
+
 function signIn(data) {
   return post("api/User/signIn", data);
 }
