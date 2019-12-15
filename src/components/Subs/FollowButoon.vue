@@ -24,10 +24,10 @@
 
 <script>
 import cookie from '../../utils/cookie'
+import axios from '../../utils/axios'
 export default {
   data() {
     return {
-      
     };
   },
   props: {
@@ -53,7 +53,10 @@ export default {
       this.$emit("update:isFollowing", false);
       this.$emit("update:followerCount", this.followerCount - 1);
       console.log("取消关注");
-      this.cancelFollowingTo(this.visitor).then(response => {
+      var data = {
+        userID: this.userID
+      }
+      this.cancelFollowingTo(this.visitor, data).then(response => {
         if (response.data.message != "success") {
           this.$emit("update:isFollowing", true);
           this.$emit("update:followerCount", this.followerCount + 1);
@@ -68,7 +71,10 @@ export default {
       this.$emit("update:isFollowing", true);
       this.$emit("update:followerCount", this.followerCount + 1);
       console.log("follow谁：", this.visitor);
-      this.followSb(this.visitor).then(response => {
+      var data = {
+        userID: this.userID
+      }
+      axios.followSb(this.visitor, data).then(response => {
         console.log("follow结果", response);
         if (response.data.message != "success") {
           this.$emit("update:isFollowing", false);
@@ -88,6 +94,9 @@ export default {
     }
   },
   computed: {
+    userID: function(){
+      return cookie.getCookie("userID")
+    },
     is_following() {
       return this.isFollowing;
     },

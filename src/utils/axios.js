@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials=true;
 import VueAxios from 'vue-axios'
 import Vue from 'vue'
 
@@ -66,14 +66,15 @@ function search(searchKey, startFrom, limitation) {
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //RELATION
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 var RELATION = "api/Relation/";
 //followSb(user_id)
-function followSb(user_id) {
+function followSb(user_id, data) {
   if (!checkNumber(user_id)) {
     console.log("followSb")
     return null;
   }
-  return get(RELATION + "follow/" + user_id);
+  return post(RELATION + "follow/" + user_id, data);
 }
 //queryFollowingFor(user_id, startFrom, limitation)
 function queryFollowingFor(user_id, startFrom, limitation) {
@@ -100,11 +101,12 @@ function queryFollowersFor(user_id, startFrom, limitation) {
   return post(RELATION + "queryFollowersFor/" + user_id, data);
 }
 //cancelFollowingTo(user_id)
-function cancelFollowingTo(user_id) {
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
+function cancelFollowingTo(user_id, data) {
   if (!checkNumber(user_id)) {
     return null;
   }
-  return get(RELATION + "cancelFollowingTo/" + user_id);
+  return post(RELATION + "cancelFollowingTo/" + user_id, data);
 }
 //if_following(follower_id, be_followed_id)
 function if_following(follower_id, be_followed_id) {
@@ -114,30 +116,33 @@ function if_following(follower_id, be_followed_id) {
   return post(RELATION + "if_following?follower_id=" + follower_id + "&be_followed_id=" + be_followed_id);
 }
 //if_following_by_me(be_followed_id)
-function if_following_by_me(be_followed_id) {
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
+function if_following_by_me(be_followed_id, data) {
   if (!checkNumber(be_followed_id)) {
     return null;
   }
   console.log(RELATION + "if_following_by_me/" + be_followed_id)
-  return get(RELATION + "if_following_by_me/" + be_followed_id);
+  return post(RELATION + "if_following_by_me/" + be_followed_id, data);
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 //LIKE点赞
 //like(message_id)
 var LIKE = "api/Like/";
 
-function like(message_id) {
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
+function like(message_id, data) {
   if (!checkNumber(message_id)) {
     return null;
   }
-  return get(LIKE + message_id);
+  return post(LIKE + message_id, data);
 }
 //cancelLike(message_id)
-function cancelLike(message_id) {
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
+function cancelLike(message_id, data) {
   if (!checkNumber(message_id)) {
     return null;
   }
-  return get(LIKE + "cancel/" + message_id);
+  return post(LIKE + "cancel/" + message_id, data);
 }
 //queryLikes(user_id)
 function queryLikes(user_id) {
@@ -149,11 +154,12 @@ function queryLikes(user_id) {
   )
 }
 //checkUserLikesMessage(user_id, message_id)
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function checkUserLikesMessage(user_id, message_id) {
   if (!checkNumber(user_id, message_id)) {
     return null;
   }
-  return post(LIKE + "checkUserLikesMessage?user_id=" + user_id + "&message_id=" + message_id);
+  return get(LIKE + "checkUserLikesMessage?user_id=" + user_id + "&message_id=" + message_id);
 }
 ///////////////////////////////////////////////////////////////////////////////
 //MESSAGE推特
@@ -188,14 +194,16 @@ function queryMessagesOf(user_id, startFrom, limitation) {
   return post(MESSAGE + "queryMessage/" + user_id, data)
 }
 //queryFollowMessage(startFrom, limitation)
-function queryFollowMessage(startFrom, limitation) {
+function queryFollowMessage(startFrom, limitation, userID) {
   var data = {
     startFrom: startFrom,
-    limitation: limitation
+    limitation: limitation,
+    userID: userID
   }
   return post(MESSAGE + "queryFollowMessage", data);
 }
 //sendMessage(formData: {message_content, message_has_image, message_image_count, files})
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function sendMessage(formData) {
   return post(MESSAGE + "send", formData);
 }
@@ -211,6 +219,7 @@ function queryComment(id, data) {
   return post(COMMENT + 'queryComments/' + id, data);
 }
 
+//dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
 function addComment(id, data) {
   return post(COMMENT + 'add/' + id, data);
 }

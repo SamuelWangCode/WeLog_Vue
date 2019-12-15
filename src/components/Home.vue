@@ -157,7 +157,7 @@ ul li{
               <div class="Editer" default-txt="What happens?" contenteditable @click.prevent="clickEditor" v-bind:focus="isEditerFocused" @input="editerInputEventHandler">
                 What happens?
               </div>-->
-            <Input :ref="'editor'" :rows="editor_content.length > 0 ? 4 : 2" v-model="editor_content" v-bind:maxlength="140" type="textarea" placeholder="Enter something..."
+            <Input :ref="'editor'" :rows="editor_content.length > 0 ? 4 : 2" v-model="editor_content" v-bind:maxlength="140" type="textarea" placeholder="输入些什么..."
             @v-bind:focus="isEditerFocused" @focus="editerFocusEventHandler"  @blur="editerBlurEventHandler" />
             <!-----TODO:AddPicture--- ----------------------------------------------->
             <div style="margin-top:5px;">
@@ -202,7 +202,7 @@ ul li{
             </div>
 
             <!-- sdadasdasdasdsad ---------------------------------------------------------------------------->
-            <Button type="primary" size="normal" :disabled="!editor_content.length" v-show="editor_content.length > 0" @click="sendPostBtnClickEventHandler" @focus="editerFocusEventHandler" @blur="editerBlurEventHandler" style="float:right;margin-top:10px;margin-right:20px;">Tweet</button>
+            <Button type="primary" size="normal" :disabled="!editor_content.length" v-show="editor_content.length > 0" @click="sendPostBtnClickEventHandler" @focus="editerFocusEventHandler" @blur="editerBlurEventHandler" style="float:right;margin-top:10px;margin-right:20px;">发送 WeLog</button>
           </div>
 
         </div>
@@ -235,6 +235,7 @@ ul li{
   import loadingAnimate from "./animate/loading"
   import Tweets from "./Subs/Tweets"
   import UserInfo from "./Subs/userInfo"
+  import cookie from "../utils/cookie"
   import backToTop from "./Subs/BackToTop"
   export default {
     name:'Home',
@@ -263,6 +264,11 @@ ul li{
         inputContent: '',
       }
     },
+    computed:{
+      userID: function(){
+        return cookie.getCookie("userID")
+      }
+    },
     components:{
       loadingAnimate,
       "tweets":Tweets,
@@ -270,11 +276,9 @@ ul li{
       backToTop
     },
     mounted() {
-    var _this = this;
-    var userID = _this.getCookie("userID")
+    var userID = cookie.getCookie("userID")
     console.log("登录：", userID)
     console.log(userID)
-    this.uploadList = this.$refs.upload.fileList;
     axios.getUserPublicInfo(userID).then(Response=>{
     console.log(Response)
     if(Response.data.code==200 && Response.data.message=="success")
@@ -314,8 +318,8 @@ ul li{
           this.visible = true;
       },
       handleRemove (file) {
-                const fileList = this.$refs.upload.fileList;
-                this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
+                // const fileList = this.$refs.upload.fileList;
+                // this.$refs.upload.fileList.splice(fileList.indexOf(file), 1);
       },
       handleSuccess (res, file) {
                 file.url = '';
@@ -353,22 +357,22 @@ ul li{
                 }
 
                 var _this = this;
-                if(file.is_video){
-                  if(_this.$refs.upload.fileList.length > 1){
-                    this.$Notice.warning({
-                      title: 'Up to single video can be uploaded'
-                    });
-                    return;
-                  }
-                }
+                // if(file.is_video){
+                //   if(_this.$refs.upload.fileList.length > 1){
+                //     this.$Notice.warning({
+                //       title: 'Up to single video can be uploaded'
+                //     });
+                //     return;
+                //   }
+                // }
 
                 if(file.is_img){
                   var hasVideo = false;
-                  for(let i = 0; i < this.$refs.upload.fileList.length; i++){
-                    if(this.$refs.upload.fileList[i].is_video){
-                      hasVideo = true;
-                    }
-                  }
+                  // for(let i = 0; i < this.$refs.upload.fileList.length; i++){
+                  //   if(this.$refs.upload.fileList[i].is_video){
+                  //     hasVideo = true;
+                  //   }
+                  // }
                   if(hasVideo){
                     this.$Notice.warning({
                       title: 'Video and Image cannot be uploaded together'
@@ -378,7 +382,7 @@ ul li{
 
                 }
 
-                const check =  this.$refs.upload.fileList.length < 4;
+                // const check =  this.$refs.upload.fileList.length < 4;
                 if (!check) {
                     this.$Notice.warning({
                         title: 'Up to four items can be uploaded.'
@@ -391,7 +395,7 @@ ul li{
                         console.log("圖片解析完畢")
                       file.url = this.result
                       this.img_preview_src = file.src;
-                      _this.$refs.upload.fileList.push(file);
+                      // _this.$refs.upload.fileList.push(file);
                     }
                   }else if(file.is_video){
                       var url = null ;
@@ -403,7 +407,7 @@ ul li{
                         url = window.webkitURL.createObjectURL(file) ;
                       }
                       file.url = url;
-                      _this.$refs.upload.fileList.push(file);
+                      // _this.$refs.upload.fileList.push(file);
                   }
 
                 }
@@ -440,11 +444,7 @@ ul li{
       console.log("点击发送推特", this.editor_content, this.uploadList);
       var formData = new FormData();
       formData.append("message_content", this.editor_content);
-      formData.append("message_has_image", this.uploadList.length > 0 ? 1 : 0);
-      formData.append("message_image_count", this.uploadList.length);
-      for(let i = 0; i < this.uploadList.length; i++){
-        formData.append("file"+i, this.uploadList[i]);
-      }
+      formData.append("userID", this.userID)
       axios.sendMessage(formData).then(response=>{
         //this.sendingTwitter = false;
         console.log(response);

@@ -36,22 +36,22 @@
         v-bind:item="item"
         class="tweet-items"
         @likeTwi="doLike(item)"
-        @collectTwi="doCollect(item)"
         @follow="doFollow(item)"
         v-bind:isFollowing="isFollowing[item.message_sender_user_id]"
         @change_follow="change_follow($event,item)"
       ></twiitem>
       <Divider/>
     </div>
-    <div v-if="ableShowMore" class="load-more" @click="loadMore()">Load More...<spin v-if="spinShow"><Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
-                <div>Loading</div></spin></div>
-    <div v-else class="no-more">No More</div>
+    <div v-if="ableShowMore" class="load-more" @click="loadMore()">加载更多...<spin v-if="spinShow"><Icon type="ios-loading" size=18 class="demo-spin-icon-load"></Icon>
+                <div>请稍等...</div></spin></div>
+    <div v-else class="no-more">没有更多了</div>
   </div>
 </template>
 
 
 <script>
 import axios from "../../utils/axios";
+import cookie from "../../utils/cookie"
 import TwiItem from "./TweetSingle";
 export default {
   name: "twitter-items",
@@ -65,20 +65,20 @@ export default {
       items: [],
       twiDatas: [],
       userDatas: "",
-      showBigImage: false,
-      BigImageSource: "",
       ableShowMore: true,
       isFollowing: new Object(),
       spinShow: false,
       burl: "http://localhost:12293/"
     };
   },
+  computed:{
+    userID: function(){
+      return cookie.getCookie("userID")
+    }
+  },
   methods: {
     doLike(item) {
       item.likeByUser = !item.likeByUser;
-    },
-    doCollect(item) {
-      item.collectByUser = !item.collectByUser;
     },
     doFollow(item) {
       item.followByUser = !item.followByUser;
@@ -127,7 +127,8 @@ export default {
       } else if (this.type == "home") {
         axios.queryFollowMessage(
           this.items.length + 1,
-          10
+          10,
+          this.userID
         ).then(Response => {
 
           this.$emit("stop_loading");
@@ -189,23 +190,12 @@ export default {
         let itemTemp = this.twiDatas[i];
         itemTemp.ifShowComment = false;
         itemTemp.comments = [];
-        itemTemp.collectByUser = false;
         itemTemp.likeByUser = false;
         itemTemp.followByUser = null;
         itemTemp.comments = [];
-        if (itemTemp.message_ats == null) {
-          itemTemp.message_ats = [];
-        }
-        if (itemTemp.message_topics == null) {
-          itemTemp.message_topics = [];
-        }
-        if (itemTemp.message_image_urls == null) {
-          itemTemp.message_image_urls = [];
-        }
         //可以先解析已有内容
         this.isFollowing[itemTemp.message_sender_user_id] = null;
             this.items.push(itemTemp);
-
       }
       //完成加入后清空twiDatas，必须有，否则验证出错
       this.twiDatas = [];

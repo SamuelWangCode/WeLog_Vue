@@ -108,8 +108,8 @@
               <p class="user-name">{{userName}}</p>
               <p class="time">
                 {{item.message_create_time}}
-                <Icon type="ios-flame" size="18" style="color: #ff9900"></Icon>
-                {{item.message_heat}}
+                <!-- <Icon type="ios-flame" size="18" style="color: #ff9900"></Icon>
+                {{item.message_heat}} -->
               </p>
             </router-link>
           </div>
@@ -126,16 +126,8 @@
           <twitextblock
             class="twi-text"
             v-bind:fullText="item.message_content"
-            :ats="item.message_ats"
-            :topics="item.message_topics"
           ></twitextblock>
         </div>
-
-        <imagehandler
-          class="img-handler"
-          :imgData="item.message_image_urls"
-          :twiId="item.message_id"
-        ></imagehandler>
       </div>
       <div class="buttom-buttons">
         <div class="comment-div" @click="showComment()">
@@ -187,15 +179,12 @@ export default {
       showMenu: false,
       ifShowComment: false,
       comments: [],
-      collectByUser: false,
       likeByUser: false,
       followByUser: null,
       commentsNum: 0,
       commented: false,
-      userAvt:"",
-      userName:"user",
-      rawItemUserAvt: "",
-      rawItemUserName: ""
+      userAvt:"static/timg.jpg",
+      userName:"user"
     };
   },
   methods: {
@@ -222,7 +211,10 @@ export default {
       if (this.likeByUser == false) {
         this.likeByUser = true;
         this.item.message_like_num++;
-        axios.like(this.item.message_id).then(Response => {
+        var data = {
+          userID: this.userID
+        }
+        axios.like(this.item.message_id, data).then(Response => {
           if (Response.data.message == "success") {
           }
           //失败了就返回来
@@ -235,7 +227,10 @@ export default {
       } else if (this.likeByUser == true) {
         this.likeByUser = false;
         this.item.message_like_num--;
-        axios.cancelLike(this.item.message_id).then(Response => {
+        var data = {
+          userID : this.userID
+        }
+        axios.cancelLike(this.item.message_id, data).then(Response => {
           if (Response.data.message == "success") {
           }
           //失败了就返回来
@@ -259,7 +254,8 @@ export default {
     },
     doSendComment(content) {
       let data = {
-        comment_content: content
+        comment_content: content,
+        userID: this.userID
       };
       axios.addComment(this.item.message_id, data).then(Response => {
         if (Response.data.message == "success") {
@@ -271,7 +267,7 @@ export default {
               let commTemp = {
                 userPublicInfo: {
                   nickname: Response.data.data.nickname,
-                  avatar_url: Response.data.data.avatar_url
+                  avatar_url: "static/timg.jpg"
                 },
                 comment: {
                   comment_content: content,
@@ -303,24 +299,27 @@ export default {
     }
   },
   created() {
-    this.collectByUser = this.item.collectByUser;
+    // this.collectByUser = this.item.collectByUser;
     this.likeByUser = this.item.likeByUser;
     this.followByUser = this.item.followByUser;
     this.commentsNum = this.item.message_comment_num;
     //求证是否点赞收藏关注
     axios.checkUserLikesMessage(
       cookie.getCookie("userID"),
-      this.item.message_id
+      this.item.message_id,
     ).then(Response => {
       this.likeByUser = Response.data.data.like;
     });
-    axios.checkUserCollectMessage(
-      cookie.getCookie("userID"),
-      this.item.message_id
-    ).then(Response => {
-      this.collectByUser = Response.data.data.favor;
-    });
-    axios.if_following_by_me(this.item.message_sender_user_id).then(Response => {
+    // axios.checkUserCollectMessage(
+    //   cookie.getCookie("userID"),
+    //   this.item.message_id
+    // ).then(Response => {
+    //   this.collectByUser = Response.data.data.favor;
+    // });
+    var data={
+      userID: this.userID
+    }
+    axios.if_following_by_me(this.item.message_sender_user_id, data).then(Response => {
       this.followByUser = Response.data.data.if_following;
     });
     //取用户数据
@@ -328,34 +327,33 @@ export default {
     axios.getUserPublicInfo(this.item.message_sender_user_id).then(
       Response => {
         this.userName = Response.data.data.nickname;
-        this.userAvt = Response.data.data.avatar_url;
-
+        // this.userAvt = Response.data.data.avatar_url;
       }
     );
 
     //如果是转发的就取原推特条
-    if (this.item.message_transpond_message_id > 0) {
-      axios.queryMessage(this.item.message_transpond_message_id).then(
-        Response => {
-          if (Response.data.message == "success") {
-            this.item.rawItem = Response.data.data;
-            axios.getUserPublicInfo(
-              this.item.rawItem.message_sender_user_id
-            ).then(Response => {
-              this.rawItemUserName = Response.data.data.nickname;
-              this.rawItemUserAvt = Response.data.data.avatar_url;
-              //console.log("转发的推特",this.item.rawItem);
-            });
-          } else {
-            alert("请求被转发推特失败");
-          }
-        }
-      );
-    }
+    // if (this.item.message_transpond_message_id > 0) {
+    //   axios.queryMessage(this.item.message_transpond_message_id).then(
+    //     Response => {
+    //       if (Response.data.message == "success") {
+    //         this.item.rawItem = Response.data.data;
+    //         axios.getUserPublicInfo(
+    //           this.item.rawItem.message_sender_user_id
+    //         ).then(Response => {
+    //           this.rawItemUserName = Response.data.data.nickname;
+    //           this.rawItemUserAvt = Response.data.data.avatar_url;
+    //           //console.log("转发的推特",this.item.rawItem);
+    //         });
+    //       } else {
+    //         alert("请求被转发推特失败");
+    //       }
+    //     }
+    //   );
+    // }
   },
   computed: {
-    Message_heat: function() {
-      return this.item.message_heat * 65335 + Math.floor(Math.random() * 100);
+    userID: function(){
+      return cookie.getCookie("userID")
     }
   },
   watch: {

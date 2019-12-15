@@ -79,12 +79,12 @@ import axios from '../../utils/axios'
 import cookie from '../../utils/cookie'
 export default {
   name: "userInfo",
-  props:{
-    inject_topics: {
-      required: false,
-      default: null,
-    }
-  },
+  // props:{
+  //   inject_topics: {
+  //     required: false,
+  //     default: null,
+  //   }
+  // },
   data() {
     return {
       userName:"userName",

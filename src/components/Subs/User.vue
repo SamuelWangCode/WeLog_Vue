@@ -30,7 +30,7 @@ export default {
         self_introduction: "",
         followers_num: 0,
         follows_num: 0,
-        avatar_url: "/avatars/0.jpg",
+        avatar_url: "static/timg.jpg",
         messages_num: 0,
         collection_num: 0,
       },
@@ -61,7 +61,7 @@ export default {
       console.log("followInfo", info)
       this.user_info.user_id=info.user_id;
       this.user_info.nickname=info.user_nickname;
-      this.user_info.avatar_url=info.avatar_url;
+      this.user_info.avatar_url="static/timg.jpg";
     }
   },
   mounted(){

@@ -5,19 +5,19 @@
         <Menu mode="horizontal" :theme="theme1" active-name="home" style="padding-left:10%;padding-right: 40px;" @on-select="onSelect">
           <MenuItem name="home" router-link="{path: '/'}" style="width:9%" key="Home">
             <div class="over"><Icon type="ios-home" class="menuIcon"></Icon>
-            <span class="menuWords">Home</span></div>
+            <span class="menuWords">主页</span></div>
           </MenuItem>
           <MenuItem name="personal" router-link :to="{ path: '/Zoom', query: { visitor_id: userID}}" style="width:11%" key="personal">
             <div class="over"><Icon type="ios-person" class="menuIcon"></Icon>
-            <span class="menuWords">Personal</span></div>
+            <span class="menuWords">个人空间</span></div>
           </MenuItem>
           <MenuItem name="explore" router-link="{path: '/Explore'}" style="width:10%" key="Explore">
             <div class="over"><Icon type="ios-eye" class="menuIcon"></Icon>
-            <span class="menuWords">Explore</span></div>
+            <span class="menuWords">发现</span></div>
           </MenuItem>
-          <Button shape="circle" @click="handleSearch" icon="ios-search" style="border:0;"></Button>
-          <Input v-model = "model13" @keyup.enter.native="handleSearch" placeholder="search in twitter" style="width: 25%;"></Input>
-          <Button type="primary" style="float:right;margin-top:15px;" @click = "signOut">LOG OUT</Button>
+          <Button shape="circle" @click="handleSearch" icon="ios-search" style="border:0; margin-left:25%;"></Button>
+          <Input v-model = "model13" @keyup.enter.native="handleSearch" placeholder="在所有内容中查找" style="width: 25%;"></Input>
+          <!-- <Button type="primary" style="float:right;margin-top:15px;" @click = "signOut">LOG OUT</Button> -->
         </Menu>
       </nav>
     </section>
@@ -26,8 +26,8 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  axios.defaults.withCredentials = true;
+  import axios from './utils/axios'
+  import cookie from './utils/cookie'
   export default {
     name: 'App',
     data(){
@@ -42,14 +42,10 @@
     }
     ,
     mounted(){
-      let _this=this;
-      this.userID = _this.getCookies("userID")
+      this.userID = cookie.getCookie("userID")
       },
 
     methods:{
-      getCookies(a){
-        return this.getCookie(a);
-      },
       isRead(){
         this.mentionedCount = 0;
         console.log("读了")
@@ -72,7 +68,7 @@
       async signOut(){
         try {
           console.log("startLogOut")
-          this.logOut().then(Response=>{
+          axios.logOut().then(Response=>{
             console.log(Response);
             if(Response.data.code==200 && Response.data.message=="success")
             {
@@ -83,7 +79,7 @@
                 desc:''
               })
               this.$router.push("/index");
-              this.delCookie('userID')
+              cookie.delCookie('userID')
               return
             }
             else{

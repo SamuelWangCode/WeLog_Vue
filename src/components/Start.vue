@@ -1,17 +1,18 @@
 <template>
   <div class="fs-split">
+    <loadingAnimate v-show="loading" class="center-fix"></loadingAnimate>
     <div class="split-image">
       <img src="static/WELOG.png">
     </div>
     <div class="split-content">
       <div class="split-content-vertically-center">
         <div class="split-intro">
-          Welcome to your Welog!
+          欢迎来到 Welog!
         </div>
         <div class="split-detail">
-          <p>This is where we record and share our life.Have a nice day.</p>
+          <p>我们在这里分享和记录我们的生活！祝您拥有美好的一天！</p>
         </div>
-        <Button @click="login = true" size="large" type="text">Login</Button>
+        <Button @click="login = true" size="large" type="text">登录</Button>
         <Drawer
           title="LOGIN"
           v-model="login"
@@ -21,20 +22,20 @@
         >
           <div class="login-input">
             <div class="label">
-              USERNAME
+              用户名
             </div>
-            <input type="text" placeholder="username" v-model="usernameL" @keyup.enter="loginEventHandeler" maxlength="10"></input>
+            <input type="text" placeholder="用户名" v-model="usernameL" @keyup.enter="loginEventHandeler" maxlength="10"></input>
             <div class="label">
-              PASSWORD
+              密码
             </div>
-            <input type="password" placeholder="password" v-model="passwordL" @keyup.enter="loginEventHandeler" maxlength="20"></input>
+            <input type="password" placeholder="密码" v-model="passwordL" @keyup.enter="loginEventHandeler" maxlength="20"></input>
           </div>
           <div class="drawer-footer">
-            <Button size="large" style="margin-right: 8px" @click="login = false" type="text">Cancel</Button>
-            <Button @click="loginEventHandeler" size="large" type="primary">Login</Button>
+            <Button size="large" style="margin-right: 8px" @click="login = false" type="text">取消</Button>
+            <Button @click="loginEventHandeler" size="large" type="primary">登录</Button>
           </div>
         </Drawer>
-        <Button @click="register = true" size="large" type="primary">Register</Button>
+        <Button @click="register = true" size="large" type="primary">注册</Button>
         <Drawer
           title="REGISTER"
           v-model="register"
@@ -44,21 +45,21 @@
         >
           <div class="login-input">
             <div class="label">
-              USERNAME
+              用户名
             </div>
-            <input type="text" placeholder="username" v-model="usernameR" @keyup.enter="registEventHandler" maxlength="10"></input>
+            <input type="text" placeholder="用户名" v-model="usernameR" @keyup.enter="registEventHandler" maxlength="10"></input>
             <div class="label">
-              PASSWORD
+              密码
             </div>
-            <input type="password" placeholder="password" v-model="passwordR" @keyup.enter="registEventHandler" maxlength="20"></input>
+            <input type="password" placeholder="密码" v-model="passwordR" @keyup.enter="registEventHandler" maxlength="20"></input>
             <div class="label">
-              PASSWORD-CONFIRM
+              确认密码
             </div>
-            <input type="password" placeholder="password" v-model="confirmPassword" @keyup.enter="registEventHandler" maxlength="20"></input>
+            <input type="password" placeholder="确认密码" v-model="confirmPassword" @keyup.enter="registEventHandler" maxlength="20"></input>
           </div>
           <div class="drawer-footer">
-            <Button size="large" style="margin-right: 10px" @click="register = false" type="text">Cancel</Button>
-            <Button @click="registEventHandler" size="large" type="primary">Register</Button>
+            <Button size="large" style="margin-right: 10px" @click="register = false" type="text">取消</Button>
+            <Button @click="registEventHandler" size="large" type="primary">注册</Button>
           </div>
         </Drawer>
       </div>
@@ -218,6 +219,15 @@
 </script>
 
 <style>
+.center-fix{
+	position: fixed;/*固定位置*/
+	z-index:99;/*设置优先级显示，保证不会被覆盖*/
+  margin:auto;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+}
   .fs-split {
     width: 100vw;
     height: 100vh;

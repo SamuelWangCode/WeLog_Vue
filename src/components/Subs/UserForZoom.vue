@@ -24,6 +24,7 @@
 </template>
 <script>
 import ImageHandler from "./ImageHandler";
+import cookie from "../../utils/cookie"
 import FollowButton from "./FollowButoon";
 import axios from '../../utils/axios'
 export default {
@@ -45,6 +46,11 @@ export default {
       confirm_url: "/static/confirmed.png"
     };
   },
+  computed:{
+      userID: function(){
+        return cookie.getCookie("userID")
+      }
+  },
   components: { ImageHandler, FollowButton },
   props: {
     p_user_id: { type: Number, default: null },
@@ -58,7 +64,10 @@ export default {
     },
     get_info: function(user_id) {
       console.log(user_id);
-      axios.if_following_by_me(user_id).then(Response => {
+      var data = {
+        userID: this.userID
+      }
+      axios.if_following_by_me(user_id, data).then(Response => {
         this.isFollowing = Response.data.data.if_following;
       });
       this.getUserPublicInfo(user_id).then(Response => {
@@ -77,7 +86,7 @@ export default {
       console.log(info);
       this.user_info.user_id = info.user_id;
       this.user_info.nickname = info.nickName;
-      this.user_info.avatar_url = info.avatarUrl;
+      this.user_info.avatar_url = "static/timg.jpg";
     },
     change_follow(val){
       if(this.isFollowing!=val){

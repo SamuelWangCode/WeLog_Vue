@@ -58,8 +58,8 @@
           </div>
           <div class="numbers">
             <Button type="text" style="font-size:16px;">Welog<br>{{postsCount}}</Button>
-            <Button type="text" style="font-size:16px;">Following<br>{{followingCount}}</Button>
-            <Button type="text" style="font-size:16px;">Followers<br>{{followerCount}}</Button>
+            <Button type="text" style="font-size:16px;">我关注的人<br>{{followingCount}}</Button>
+            <Button type="text" style="font-size:16px;">关注我的人<br>{{followerCount}}</Button>
           </div>
         </div>
     </div>
@@ -73,7 +73,7 @@
               v-bind:info="visitor"
             ></tweets>
         </TabPane>
-        <TabPane label="Following">
+        <TabPane label="我关注的人">
           <div v-for="user in followingList" v-bind:key="user.user_id">
               <userForZoom
                 v-bind:p_user_id="user.user_id"
@@ -82,7 +82,7 @@
               ></userForZoom>
             </div>
         </TabPane>
-        <TabPane label="Followers">
+        <TabPane label="关注我的人">
           <div v-for="user in followersList" v-bind:key="user.user_id">
               <userForZoom
                 v-bind:p_user_id="user.user_id"
@@ -147,6 +147,11 @@ export default {
       my_info: null
     };
   },
+  computed:{
+      userID: function(){
+        return cookie.getCookie("userID")
+      }
+  },
   components: {
     loadingAnimate,
     Tweets,
@@ -166,14 +171,17 @@ export default {
         _this.user_info = response.data.data;
         _this.nickname = response.data.data.nickname;
         console.log(this.nickname);
-        _this.avatar = response.data.data.avatar_url;
+        _this.avatar = "static/timg.jpg";
         _this.postsCount = response.data.data.messages_num;
         _this.followerCount = response.data.data.followers_num;
         _this.followingCount = response.data.data.follows_num;
-        _this.selfIntroduction = response.data.data.self_introction;
-        _this.joinTime = response.data.data.register_time;
+        // _this.selfIntroduction = response.data.data.self_introction;
+        // _this.joinTime = response.data.data.register_time;
       });
-      var p1 = this.if_following_by_me(this.visitor);
+      var data = {
+        userID: this.userID
+      }
+      var p1 = this.if_following_by_me(this.visitor, data);
       var p2 = this.queryFollowingFor(this.visitor, 1, 10);
       var p3 = this.queryFollowersFor(this.visitor, 1, 10);
 
@@ -291,7 +299,7 @@ export default {
       if (val) {
         var temp = new Object();
         temp.user_id = this.my_info.user_id;
-        temp.avatar_url = this.my_info.avatar_url;
+        temp.avatar_url = "static/timg.jpg";
         temp.nickname = this.my_info.nickname;
         k.push(temp);
       }

@@ -81,7 +81,7 @@
         <div class="send-comm-div">
             <!--<input type="text" style="width: 60%;margin-left:10%;margin-right:8%; margin-top:10px;" v-model="commTextToSend"/>-->
             <Input :rows="1" :maxlength="140" style="width: 60%;margin-left:10%;margin-right:8%;"  v-model="commTextToSend" type="textarea" placeholder="Enter something..."/>
-            <Button type="primary" @click="sendComment()" style="background-color: white ;color: black; z-index:10;">Send</Button>
+            <Button type="primary" @click="sendComment()" style="background-color: white ;color: black; z-index:10;">发送</Button>
         </div>
         <div v-for="comm in comments">
             <div class="comm-avt-div">
@@ -103,7 +103,7 @@
         </div>
 
         <div v-if="comments.length==0" class="no-more" >
-            No Comment Yet
+            目前还没有评论哦
         </div>
 
     </div>
