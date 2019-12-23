@@ -155,11 +155,9 @@ function queryLikes(user_id) {
 }
 //checkUserLikesMessage(user_id, message_id)
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja
-function checkUserLikesMessage(user_id, message_id) {
-  if (!checkNumber(user_id, message_id)) {
-    return null;
-  }
-  return get(LIKE + "checkUserLikesMessage?user_id=" + user_id + "&message_id=" + message_id);
+function checkUserLikesMessage(data) {
+  console.log("调用了checkUserLikesMessage" + data)
+  return post(LIKE + "checkUserLikesMessage/", data);
 }
 ///////////////////////////////////////////////////////////////////////////////
 //MESSAGE推特

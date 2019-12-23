@@ -85,17 +85,17 @@
         </div>
         <div v-for="comm in comments">
             <div class="comm-avt-div">
-                <Avatar v-bind:src="comm.userPublicInfo.avatar_url" class="comm-useravt"></Avatar>
+                <Avatar src="static/timg.jpg" class="comm-useravt"></Avatar>
             </div>
             <div class="comm-content-div">
                 <div class="comm-name-div">
-                    {{comm.userPublicInfo.nickname}}
+                    {{comm.nickname}}
                 </div>
                 <div class="comm-text-div">
-                    {{comm.comment.comment_content}}
+                    {{comm.comment_content}}
                 </div>
                 <div class="comm-time-div" >
-                    {{comm.comment.comment_create_time}}
+                    {{comm.comment_create_time}}
                 </div>
                 
             </div>

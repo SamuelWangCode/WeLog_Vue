@@ -249,6 +249,7 @@ export default {
         limitation: 10
       };
       axios.queryComment(this.item.message_id, data).then(Response => {
+        console.log("评论返回" + Response.data)
         this.comments = Response.data.data;
       });
     },
@@ -261,18 +262,13 @@ export default {
         if (Response.data.message == "success") {
           this.commentsNum += 1;
           this.commented = true;
-          this.getUserPublicInfo(cookie.getCookie("userID")).then(Response => {
+          axios.getUserPublicInfo(cookie.getCookie("userID")).then(Response => {
             let timeObj = new Date();
             if (Response.data.message == "success") {
               let commTemp = {
-                userPublicInfo: {
                   nickname: Response.data.data.nickname,
-                  avatar_url: "static/timg.jpg"
-                },
-                comment: {
                   comment_content: content,
                   comment_create_time: "just now"
-                }
               };
               this.comments.unshift(commTemp);
             } else {
@@ -304,10 +300,12 @@ export default {
     this.followByUser = this.item.followByUser;
     this.commentsNum = this.item.message_comment_num;
     //求证是否点赞收藏关注
-    axios.checkUserLikesMessage(
-      cookie.getCookie("userID"),
-      this.item.message_id,
-    ).then(Response => {
+    var data1 = {
+      user_id: cookie.getCookie("userID"),
+      message_id: this.item.message_id
+    }
+    console.log(data1)
+    axios.checkUserLikesMessage(data1).then(Response => {
       this.likeByUser = Response.data.data.like;
     });
     // axios.checkUserCollectMessage(
