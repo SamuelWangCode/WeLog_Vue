@@ -4,16 +4,20 @@
       <nav class="navBar" style="z-index: 1">
         <Menu mode="horizontal" :theme="theme1" active-name="home" style="padding-left:10%;padding-right: 40px;" @on-select="onSelect">
           <MenuItem name="home" router-link="{path: '/'}" style="width:9%" key="Home">
-            <div class="over"><Icon type="ios-home" class="menuIcon"></Icon>
+            <div class="over"><Icon type="ios-home-outline" class="menuIcon"></Icon>
             <span class="menuWords">主页</span></div>
           </MenuItem>
           <MenuItem name="personal" router-link :to="{ path: '/Zoom', query: { visitor_id: userID}}" style="width:11%" key="personal">
-            <div class="over"><Icon type="ios-person" class="menuIcon"></Icon>
+            <div class="over"><Icon type="ios-at-outline" class="menuIcon"></Icon>
             <span class="menuWords">个人空间</span></div>
           </MenuItem>
           <MenuItem name="explore" router-link="{path: '/Explore'}" style="width:10%" key="Explore">
-            <div class="over"><Icon type="ios-eye" class="menuIcon"></Icon>
+            <div class="over"><Icon type="ios-eye-outline" class="menuIcon"></Icon>
             <span class="menuWords">发现</span></div>
+          </MenuItem>
+          <MenuItem name="experiment" router-link="{path: '/experiment'}" style="width:10%" key="Experiment">
+            <div class="over"><Icon type="ios-help-outline" class="menuIcon"></Icon>
+            <span class="menuWords">实验</span></div>
           </MenuItem>
           <Button shape="circle" @click="handleSearch" icon="ios-search" style="border:0; margin-left:25%;"></Button>
           <Input v-model = "model13" @keyup.enter.native="handleSearch" placeholder="在所有内容中查找" style="width: 25%;"></Input>
