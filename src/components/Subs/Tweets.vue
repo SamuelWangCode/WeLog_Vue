@@ -152,7 +152,7 @@ export default {
         if (this.info) {
           axios.search(this.info, this.items.length + 1, 10).then(Response => {
             this.$emit("stop_loading");
-            this.twiDatas = Response.data.data.twitters;
+            this.twiDatas = Response.data.data;
             this.generateData();
             this.spinShow = false;
           });

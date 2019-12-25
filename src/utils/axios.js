@@ -134,7 +134,7 @@ function like(message_id, data) {
   if (!checkNumber(message_id)) {
     return null;
   }
-  return post(LIKE + message_id, data);
+  return post(LIKE + "like/" + message_id, data);
 }
 //cancelLike(message_id)
 //dfjjfioasjioasfiosaajsfoijasoifjasoifjsaoifjaojfiajfoiajfioajsfiojvaoijaiovjdjaiosjdaijdasioja

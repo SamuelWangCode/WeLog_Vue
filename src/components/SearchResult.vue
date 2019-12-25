@@ -70,24 +70,24 @@ export default {
   },
   mounted(){
     // console.log("搜索码为,", this.searchKey)
-    // axios.search(this.searchKey, 0, 10).then(response=>{
-    //       console.log("测试搜索結果", response);
-    //       this.inject_topics = response.data.data.topics;
-    //       this.inject_users = response.data.data.users;
-    //       var users = []
-    //       this.inject_users.forEach(each=>{
-    //         users.push({
-    //           avatar_url: each.avatar_url,
-    //           user_id: each.user_id,
-    //           followers_num: each.followers_num,
-    //           user_nickname: each.nickname
-    //         });
-    //       });
+    axios.search(this.searchKey, 0, 10).then(response=>{
+          console.log("测试搜索結果", response);
+          this.inject_topics = response.data.data.topics;
+          this.inject_users = response.data.data.users;
+          var users = []
+          this.inject_users.forEach(each=>{
+            users.push({
+              avatar_url: each.avatar_url,
+              user_id: each.user_id,
+              followers_num: each.followers_num,
+              user_nickname: each.nickname
+            });
+          });
     //       console.log("更改後", users);
     //       this.inject_users = users;
     //       console.log("搜索用戶信息", this.inject_users);
-    //       this.flag = true;
-    // });
+          this.flag = true;
+    });
   },
   
   methods:{
