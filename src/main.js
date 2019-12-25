@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
+import "v-charts/lib/line.common"
 import 'element-ui/lib/theme-chalk/index.css'
 import 'view-design/dist/styles/iview.css';
 import '../my-theme/dist/iview.css'
