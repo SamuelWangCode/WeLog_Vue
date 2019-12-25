@@ -113,10 +113,7 @@
                 //   console.log('aa',Response)
                 // })
                 this.loading=false
-                this.$Notice.success({
-                  title: 'Login Success!',
-                  desc:''
-                })
+                this.$Message.success('登陆成功!')
                 var i = Response.data.data.user_id
                 cookie.setCookie("userID", i)
                 console.log(document.cookie)
@@ -125,25 +122,16 @@
               else if(Response.data.code==200 && Response.data.message=="wrong username or password")
               {
                 this.loading=false
-                this.$Notice.error({
-                  title: 'Username or Password Wrong.',
-                  desc:''
-                })
+                this.$Message.error('用户名或密码错误。')
               }
               else if(Response.data.code==200 && Response.data.message=="username exists")
               {
                 this.loading=false
-                this.$Notice.error({
-                  title: 'Your username has been used.',
-                  desc:''
-                })
+                this.$Message.error('你的用户名已经被使用。')
               }
               else{
                 this.loading=false
-                this.$Notice.error({
-                  title: "Cannot connect to server.",
-                  desc:''
-                })
+                this.$Message.error("连接服务器出错。")
               }
             });
           } catch (e) {
@@ -162,19 +150,19 @@
           if(!regUsername.test(this.usernameR))
           {
             this.loading=false;
-            this.$Message.error("Username is invalid.")
+            this.$Message.error("用户名不合法。")
             return;
           }
           else if(!regPassword.test(this.passwordR))
           {
             this.loading=false;
-            this.$Message.error("Your password should be more than 6 characters, and don't use special character.");
+            this.$Message.error("密码应大于6个字符，且不含特殊符号。");
             return;
           }
           else if(this.passwordR!==this.confirmPassword)
           {
             this.loading=false;
-            this.$Message.error("The two passwords did not match!");
+            this.$Message.error("两次输入的密码不匹配。");
             return;
           }
           try {
@@ -188,10 +176,7 @@
               console.log(Response.data);
               if(Response.data.code==200 && Response.data.message=="success")
               {
-                this.$Notice.success({
-                  title: 'Register Success!',
-                  desc:''
-                })
+                this.$Message.success('注册成功!')
                 this.loading=false
                 this.register=false
                 this.login=true
@@ -199,11 +184,11 @@
               else if(Response.data.code==200 && Response.data.message=="Your name is used")
               {
                 this.loading=false
-                this.$Message.error("The name is used!")
+                this.$Message.error("你的名字已被使用了。")
               }
               else{
                 this.loading=false
-                this.$Message.error("Can't connect with server.")
+                this.$Message.error("连接服务器出错。")
               }
             });
           } catch (e) {

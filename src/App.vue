@@ -74,19 +74,13 @@
             {
               //成功
               //this.errHint="Success!";
-              this.$Notice.success({
-                title: 'Log out Success!',
-                desc:''
-              })
+              this.$Message.success('登出成功!')
               this.$router.push("/index");
               cookie.delCookie('userID')
               return
             }
             else{
-              this.$Notice.error({
-                title: "Can't connect with server.",
-                desc:''
-              })
+              this.$Message.error("连接服务器出错")
             }
           });
         } catch (e) {

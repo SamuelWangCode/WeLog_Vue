@@ -272,17 +272,11 @@ export default {
               };
               this.comments.unshift(commTemp);
             } else {
-              this.$Notice.error({
-                title: "You should say something.",
-                desc: ""
-              });
+              this.$Message.error("你需要输入些什么。");
             }
           });
         } else {
-          this.$Notice.error({
-            title: "You should say something.",
-            desc: ""
-          });
+          this.$Message.error("你需要输入些什么。");
         }
       });
     },
