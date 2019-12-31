@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-
+                    SQL语句优化：不使用‘*’
                 </div>
                 <div class="graph">
                     <Histogram

@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-
+                    SQL预编译
                 </div>
                 <div class="graph">
                     <Histogram

@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-
+                    SQL语句优化：使用EXISTS替换DISTINCT
                 </div>
                 <div class="graph">
                     <Histogram

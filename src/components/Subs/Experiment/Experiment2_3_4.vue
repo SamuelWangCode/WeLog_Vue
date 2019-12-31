@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-
+                    维护索引实验  
                 </div>
                 <div class="graph">
                     <Histogram

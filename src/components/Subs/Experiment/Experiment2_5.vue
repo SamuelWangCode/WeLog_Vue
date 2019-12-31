@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-
+                    数据库连接模式
                 </div>
                 <div class="graph">
                     <Histogram

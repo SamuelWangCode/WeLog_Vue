@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-
+                    插入实验
                 </div>
                 <div class="graph">
                     <Histogram
@@ -39,11 +39,11 @@ export default {
             chartData:{
                 columns: ['数据量级', 'Oracle', 'OracleInMemory', 'TimesTenCatche','TimesTen'],
                 rows: [
-                    { '数据量级': '千级', 'Oracle': 1393, 'OracleInMemory': 1093, 'TimesTenCatche': 0.32, 'TimesTen':50},
-                    { '数据量级': '万级', 'Oracle': 3530, 'OracleInMemory': 3230, 'TimesTenCatche': 0.26, 'TimesTen':50 },
-                    { '数据量级': '十万级', 'Oracle': 2923, 'OracleInMemory': 2623, 'TimesTenCatche': 0.76, 'TimesTen':50 },
-                    { '数据量级': '百万级', 'Oracle': 1723, 'OracleInMemory': 1423, 'TimesTenCatche': 0.49, 'TimesTen':50 },
-                    { '数据量级': '千万级', 'Oracle': 3792, 'OracleInMemory': 3492, 'TimesTenCatche': 0.323, 'TimesTen':50 }
+                    { '数据量级': '千级', 'Oracle': 114, 'OracleInMemory': 1093, 'TimesTenCatche': 0.32, 'TimesTen':50},
+                    { '数据量级': '万级', 'Oracle': 470, 'OracleInMemory': 3230, 'TimesTenCatche': 0.26, 'TimesTen':50 },
+                    { '数据量级': '十万级', 'Oracle': 4241, 'OracleInMemory': 2623, 'TimesTenCatche': 0.76, 'TimesTen':50 },
+                    { '数据量级': '百万级', 'Oracle': 31277, 'OracleInMemory': 1423, 'TimesTenCatche': 0.49, 'TimesTen':50 },
+                    { '数据量级': '千万级', 'Oracle': 87188, 'OracleInMemory': 3492, 'TimesTenCatche': 0.323, 'TimesTen':50 }
                 ]
             },
             chartSettings:{}

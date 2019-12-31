@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-
+                    系统全局区SGA调整
                 </div>
                 <div class="graph">
                     <!-- <Histogram
