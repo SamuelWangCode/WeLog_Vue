@@ -36,6 +36,7 @@
                     <MenuItem name="2-3-4" to="/experiment2_3_4">维护索引</MenuItem>
                 </Submenu>
                 <MenuItem name="2-4" to="/experiment2_4">使用预编译</MenuItem>
+                <MenuItem name="2-9" to="/experiment2_9">存储过程</MenuItem>
                 <MenuItem name="2-5" to="/experiment2_5">数据库连接模式</MenuItem>
                 <Submenu name="2-6">
                     <template slot="title">数据类型</template>

@@ -7,10 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    维护索引实验  
-                    <br>
-                    select * from TEST_POST where instr(CONTENT,'转发微博')>0
-
+                    存储过程
                 </div>
                 <div class="graph">
                     <Histogram
@@ -30,24 +27,25 @@
 import Histogram from "../Histogram"
 import NavigateMenu from '../NavigateMenu'
 export default {
-    name: 'Experiment2_3_4',
+    name: 'Experiment2_9',
     components:{
         Histogram,
         NavigateMenu
     },
     data(){
         return{
-            activeName:"2-3-4",
-            openNames:["2","2-3"],
+            activeName:"2-9",
+            openNames:["2"],
             chartData:{
-                columns: ['索引', '代价', '业务操作时间'],
+                columns: ['操作', '时间'],
                 rows: [
-                    { '索引': '不维护索引', '代价': 0,'业务操作时间':63},
-                    { '索引': '索引重建rebuild', '代价': 312720, '业务操作时间':10},
-                    { '索引': '索引合并coalesce', '代价': 201448, '业务操作时间':10}                
-                    ]
+                    { '操作': '不使用存储过程', '时间': 21},
+                    { '操作': '使用存储过程', '时间': 3}
+                ]
             },
-            chartSettings:{}
+            chartSettings:{
+                showLine:['时间']
+            }
         }
     }
 }

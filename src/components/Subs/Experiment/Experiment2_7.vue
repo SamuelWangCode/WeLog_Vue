@@ -37,11 +37,11 @@ export default {
             activeName:"2-7",
             openNames:["2"],
             chartData:{
-                columns: ['大小', 'Oracle','TimesTen'],
+                columns: ['大小', '帖子表','关系表'],
                 rows: [
-                    { '大小': '8K', 'Oracle': 3530,'TimesTen':20000},
-                    { '大小': '16K', 'Oracle': 3530, 'TimesTen':20000},
-                    { '大小': '32K', 'Oracle': 3530, 'TimesTen':20000},                 
+                    { '大小': '8K', '帖子表': 216,'关系表':83},
+                    { '大小': '16K', '帖子表': 115, '关系表':158},
+                    { '大小': '32K', '帖子表': 91, '关系表':263},                 
                 ]
             },
             chartSettings:{}

@@ -24,6 +24,7 @@ import Experiment2_6_1 from '@/components/Subs/Experiment/Experiment2_6_1'
 import Experiment2_6_2 from '@/components/Subs/Experiment/Experiment2_6_2'
 import Experiment2_7 from '@/components/Subs/Experiment/Experiment2_7'
 import Experiment2_8 from '@/components/Subs/Experiment/Experiment2_8'
+import Experiment2_9 from '@/components/Subs/Experiment/Experiment2_9'
 // import Topic from '@/components/Topic'
 Vue.use(router)
 
@@ -218,6 +219,14 @@ export default new router({
       path: '/experiment2_8',
       name: 'Experiment2_8',
       component: Experiment2_8,
+      meta: {
+        keepAlive: false
+      }
+    },
+    {
+      path: '/experiment2_9',
+      name: 'Experiment2_9',
+      component: Experiment2_9,
       meta: {
         keepAlive: false
       }
