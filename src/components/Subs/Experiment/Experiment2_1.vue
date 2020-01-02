@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    物化视图实验
+                    <center><h1>物化视图实验</h1></center>
                 </div>
                 <div class="graph">
                     <Histogram
@@ -37,11 +37,11 @@ export default {
             activeName:"2-1",
             openNames:["2"],
             chartData:{
-                columns: ['TimesTen修改次数', '不使用物化视图', 'complete refresh', 'fast refresh'],
+                columns: ['TimesTen修改次数', 'force', 'complete refresh', 'fast refresh'],
                 rows: [
-                    { 'TimesTen修改次数': '10', '不使用物化视图': 1393, 'complete refresh': 1093, 'fast refresh': 0.32},
-                    { 'TimesTen修改次数': '100', '不使用物化视图': 3530, 'complete refresh': 3230, 'fast refresh': 0.26},
-                    { 'TimesTen修改次数': '1000', '不使用物化视图': 2923, 'complete refresh': 2623, 'fast refresh': 0.76}
+                    { 'TimesTen修改次数': '10', 'force': 12, 'complete refresh': 105, 'fast refresh': 34},
+                    { 'TimesTen修改次数': '100', 'force': 131, 'complete refresh': 98, 'fast refresh': 44},
+                    { 'TimesTen修改次数': '1000', 'force': 103, 'complete refresh': 91, 'fast refresh': 53}
                 ]
             },
             chartSettings:{}

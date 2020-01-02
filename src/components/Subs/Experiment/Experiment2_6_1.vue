@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    账号存储类型
+                    <center><h1>账号存储类型</h1></center>
                 </div>
                 <div class="graph">
                     <Histogram
@@ -39,8 +39,8 @@ export default {
             chartData:{
                 columns: ['类型', '查询时间','存储大小'],
                 rows: [
-                    { '类型': 'CHAR', '查询时间': 3530,'存储大小':20000},
-                    { '类型': 'NUMBER', '查询时间': 3530, '存储大小':20000},          
+                    { '类型': 'CHAR', '查询时间': 63,'存储大小':1218},
+                    { '类型': 'NUMBER', '查询时间': 25, '存储大小':1039},          
                 ]
             },
             chartSettings:{}

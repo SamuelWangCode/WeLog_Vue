@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    改变block-size
+                    <center><h1>改变block-size</h1></center>
                 </div>
                 <div class="graph">
                     <Histogram

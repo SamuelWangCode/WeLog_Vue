@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    插入实验
+                    <center><h1>插入实验</h1></center>
                 </div>
                 <div class="graph">
                     <Histogram

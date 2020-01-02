@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    数据库连接模式
+                    <center><h1>数据库连接模式</h1></center>
                 </div>
                 <div class="graph">
                     <Histogram
@@ -39,9 +39,8 @@ export default {
             chartData:{
                 columns: ['session数量', '专业服务器模式','共享服务器模式'],
                 rows: [
-                    { 'session数量': 'session数量100', '专业服务器模式': 3530,'共享服务器模式':2000},
-                    { 'session数量': 'session数量1000', '专业服务器模式': 3530, '共享服务器模式':2000}, 
-                    { 'session数量': 'session数量10000', '专业服务器模式': 3530, '共享服务器模式':2000},             
+                    { 'session数量': 'session数量100', '专业服务器模式': 5,'共享服务器模式':0},
+                    { 'session数量': 'session数量1000', '专业服务器模式': 7, '共享服务器模式':40}       
                 ]
             },
             chartSettings:{}

@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    SQL语句优化：调整Where字句顺序
+                    <center><h1>SQL语句优化：调整Where字句顺序</h1></center>
                 </div>
                 <div class="graph">
                     <Histogram

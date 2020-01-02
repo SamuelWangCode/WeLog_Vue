@@ -7,7 +7,7 @@
         <Layout :style="{marginLeft: '200px'}">
             <Content style="background-color:white">
                 <div class="pre">
-                    帖子内容存储类型
+                    <center><h1>帖子内容存储类型</h1></center>
                 </div>
                 <div class="graph">
                     <Histogram
