@@ -39,7 +39,7 @@ export default {
             chartData:{
                 columns: ['TimesTen修改次数', 'force', 'complete refresh', 'fast refresh'],
                 rows: [
-                    { 'TimesTen修改次数': '10', 'force': 12, 'complete refresh': 105, 'fast refresh': 34},
+                    { 'TimesTen修改次数': '10', 'force': 120, 'complete refresh': 105, 'fast refresh': 34},
                     { 'TimesTen修改次数': '100', 'force': 131, 'complete refresh': 98, 'fast refresh': 44},
                     { 'TimesTen修改次数': '1000', 'force': 103, 'complete refresh': 91, 'fast refresh': 53}
                 ]
