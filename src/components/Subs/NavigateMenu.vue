@@ -1,6 +1,7 @@
 <template>
     <Sider :style="{position: 'fixed', height: '100vh', left: 0, overflow: 'auto'}">
         <Menu theme="dark" width="auto" :active-name="activeName" :open-names="openNames" accordion>
+            <MenuItem name="0" to="/home">返回主页</MenuItem>
             <Submenu name="1">
                 <template slot="title">
                     性能比较实验

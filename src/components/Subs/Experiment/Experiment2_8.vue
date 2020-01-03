@@ -10,10 +10,10 @@
                     <center><h1>系统全局区SGA调整</h1></center>
                 </div>
                 <div class="graph">
-                    <!-- <Histogram
+                    <Histogram
                     :chartData="chartData"
                     :chartSettings="chartSettings">
-                    </Histogram> -->
+                    </Histogram>
                 </div>
                 <div class="after">
 
@@ -35,7 +35,18 @@ export default {
     data(){
         return{
             activeName:"2-8",
-            openNames:["2"]
+            openNames:["2"],
+            chartData:{
+                columns: ['PL/SQL个数', '共享SQL区重用率','数据字典缓冲区命中率'],
+                rows: [
+                    { 'PL/SQL个数': 'PL/SQL个数 14', '共享SQL区重用率': 0.995904322,'数据字典缓冲区命中率':0.951264321},
+                    { 'PL/SQL个数': '30', '共享SQL区重用率': 0.99603434, '数据字典缓冲区命中率':0.950234532},
+                    { 'PL/SQL个数': '60', '共享SQL区重用率': 0.984092382, '数据字典缓冲区命中率':0.9134545},     
+                    { 'PL/SQL个数': '120', '共享SQL区重用率': 0.984034040, '数据字典缓冲区命中率':0.882334566},     
+                    { 'PL/SQL个数': '150', '共享SQL区重用率': 0.98342526, '数据字典缓冲区命中率':0.830851096},                 
+                ]
+            },
+            chartSettings:{}
         }
     }
 }

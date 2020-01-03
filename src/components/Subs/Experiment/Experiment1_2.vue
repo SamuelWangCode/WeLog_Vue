@@ -37,13 +37,13 @@ export default {
             activeName:"1-2",
             openNames:["1"],
             chartData:{
-                columns: ['数据量级', 'Oracle', 'OracleInMemory', 'TimesTenCatche','TimesTen'],
+                columns: ['数据量级', 'Oracle','TimesTen'],
                 rows: [
-                    { '数据量级': '千级', 'Oracle': 114, 'OracleInMemory': 1093, 'TimesTenCatche': 0.32, 'TimesTen':50},
-                    { '数据量级': '万级', 'Oracle': 470, 'OracleInMemory': 3230, 'TimesTenCatche': 0.26, 'TimesTen':50 },
-                    { '数据量级': '十万级', 'Oracle': 4241, 'OracleInMemory': 2623, 'TimesTenCatche': 0.76, 'TimesTen':50 },
-                    { '数据量级': '百万级', 'Oracle': 31277, 'OracleInMemory': 1423, 'TimesTenCatche': 0.49, 'TimesTen':50 },
-                    { '数据量级': '千万级', 'Oracle': 87188, 'OracleInMemory': 3492, 'TimesTenCatche': 0.323, 'TimesTen':50 }
+                    { '数据量级': '千级', 'Oracle': 25, 'TimesTen':420},
+                    { '数据量级': '万级', 'Oracle': 313, 'TimesTen':3835 },
+                    { '数据量级': '十万级', 'Oracle': 3593, 'TimesTen':32000 },
+                    { '数据量级': '百万级', 'Oracle': 48377, 'TimesTen':341000 },
+                    { '数据量级': '千万级', 'Oracle': 534000, 'TimesTen':3346000 }
                 ]
             },
             chartSettings:{}

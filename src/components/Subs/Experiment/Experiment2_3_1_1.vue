@@ -9,10 +9,18 @@
                 <div class="pre">
                     <center><h1>单一索引实验</h1></center>
                 </div>
+                <h2>USER_ID建立索引</h2>
                 <div class="graph">
                     <Histogram
                     :chartData="chartData"
-                    :chartSettings="chartSettings">
+                    :chartSettings="chartSettings">CONTENT
+                    </Histogram>
+                </div>
+                <h2>CONTENT建立索引</h2>
+                <div class="graph">
+                    <Histogram
+                    :chartData="chartData1"
+                    :chartSettings="chartSettings1">
                     </Histogram>
                 </div>
                 <div class="after">
@@ -44,7 +52,16 @@ export default {
                     { '索引': '无索引', '时间': 285},
                 ]
             },
-            chartSettings:{}
+            chartSettings:{},
+            chartData1:{
+                columns: ['索引', '时间'],
+                rows: [
+                    { '索引': '散列索引', '时间': 2696},
+                    { '索引': 'B树索引', '时间': 2603},
+                    { '索引': '无索引', '时间': 2742},
+                ]
+            },
+            chartSettings1:{}
         }
     }
 }
