@@ -8,8 +8,6 @@
             <Content style="background-color:white">
                 <div class="pre">
                     <center><h1>维护索引实验</h1></center>
-                    <br>
-                    select * from TEST_POST where instr(CONTENT,'转发微博')>0
 
                 </div>
                 <div class="graph">
